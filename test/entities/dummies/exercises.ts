@@ -1,11 +1,11 @@
-export const benchPress = {
+export const supino = {
 	name: 'supino',
 	series: {
 		repetitions: 10,
 		weight: {
 			value: 20,
 			unit: 'kg',
-			distribution: 'each side',
+			distribution: 'cada lado',
 		},
 		number: 4,
 		rest: {
@@ -13,10 +13,10 @@ export const benchPress = {
 			unit: 'min',
 		},
 	},
-	equipment: 'barbell',
-	type: 'strength',
-	muscleGroup: 'chest',
+	equipment: 'barra',
+	type: 'força',
+	muscleGroup: 'peitoral',
 	date: new Date(),
 	trainingDay: 1,
-	observations: 'none',
+	observations: 'nenhuma',
 };
