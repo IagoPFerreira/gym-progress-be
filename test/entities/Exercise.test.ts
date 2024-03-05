@@ -15,4 +15,20 @@ describe('Exercise', () => {
 			});
 		});
 	});
+
+	describe('Failure cases', () => {
+		describe('When using the class', () => {
+			it('should not be able of instantiate without name', () => {
+				const exercise = { ...supino, name: undefined };
+				// @ts-ignore
+				expect(() => new Exercise(exercise)).toThrow('Invalid name');
+			});
+
+			it('should not be able of instantiate without name as string', () => {
+				const exercise = { ...supino, name: 1 };
+				// @ts-ignore
+				expect(() => new Exercise(exercise)).toThrow('Invalid name');
+			});
+		});
+	});
 });
