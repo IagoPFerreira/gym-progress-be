@@ -7,7 +7,7 @@ export const supino = {
 			unit: 'kg',
 			distribution: 'cada lado',
 		},
-		number: 4,
+		quantity: 4,
 		rest: {
 			value: 1,
 			unit: 'min',
@@ -18,5 +18,28 @@ export const supino = {
 	muscleGroup: 'peitoral',
 	date: new Date(),
 	trainingDay: 1,
-	observations: 'nenhuma',
+	observation: 'nenhuma',
+};
+
+export const roscaDireta = {
+	name: 'rosca direta',
+	series: {
+		repetitions: 10,
+		weight: {
+			value: 10,
+			unit: 'kg',
+			distribution: 'cada lado',
+		},
+		quantity: 4,
+		rest: {
+			value: 1,
+			unit: 'min',
+		},
+	},
+	equipment: 'halter',
+	type: 'força',
+	muscleGroup: 'bíceps',
+	date: new Date(),
+	trainingDay: 1,
+	observation: 'nenhuma',
 };
