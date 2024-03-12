@@ -16,7 +16,7 @@ export const supino = {
 	equipment: 'barra',
 	type: 'força',
 	muscleGroup: 'peitoral',
-	date: '2024-03-06T19:41:36.943Z',
+	date: '06/03/2024',
 	trainingDay: 1,
 	observation: 'nenhuma',
 };
@@ -39,7 +39,7 @@ export const roscaDireta = {
 	equipment: 'halter',
 	type: 'força',
 	muscleGroup: 'bíceps',
-	date: '2024-03-11T19:41:36.943Z',
+	date: '11/03/2024',
 	trainingDay: 1,
 	observation: 'nenhuma',
 };
