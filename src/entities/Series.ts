@@ -1,10 +1,10 @@
-import { ISeries } from '../interfaces/Exercise';
+import { IRest, ISeries, IWeight } from '../interfaces/Exercise';
 
 export default class Series {
 	readonly repetitions: number;
-	readonly weight: {};
+	readonly weight: IWeight;
 	readonly quantity: number;
-	readonly rest: {};
+	readonly rest: IRest;
 	constructor(series: ISeries) {
 		if (!series || Object.keys(series).length === 0)
 			throw new Error('Invalid series');
@@ -18,12 +18,12 @@ export default class Series {
 		this.rest = series.rest;
 	}
 
-	validateRepetition(repetitions: number) {
+	private validateRepetition(repetitions: number) {
 		if (!repetitions || typeof repetitions !== 'number')
 			throw new Error('Invalid repetitions');
 	}
 
-	validateWeight(weight: {
+	private validateWeight(weight: {
 		value: number;
 		unit: string;
 		distribution: string;
@@ -37,12 +37,12 @@ export default class Series {
 			throw new Error('Invalid weight');
 	}
 
-	validateQuantity(quantity: number) {
+	private validateQuantity(quantity: number) {
 		if (!quantity || typeof quantity !== 'number')
 			throw new Error('Invalid quantity');
 	}
 
-	validateRest(rest: { value: number; unit: string }) {
+	private validateRest(rest: { value: number; unit: string }) {
 		if (!rest) throw new Error('Invalid rest');
 		if (!rest.value || typeof rest.value !== 'number')
 			throw new Error('Invalid rest');
