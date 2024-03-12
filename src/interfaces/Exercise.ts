@@ -4,7 +4,7 @@ export interface IExerciseAggregate {
 	equipment: string;
 	type: string;
 	muscleGroup: string;
-	date: Date;
+	date: string;
 	trainingDay: number;
 	observation: string;
 	series: ISeries;
