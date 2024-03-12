@@ -1,4 +1,4 @@
-export interface IExerciseAggregate extends ISeries {
+export interface IExerciseAggregate {
 	id?: string;
 	name: string;
 	equipment: string;
@@ -6,19 +6,24 @@ export interface IExerciseAggregate extends ISeries {
 	muscleGroup: string;
 	date: Date;
 	trainingDay: number;
-	observations: string;
+	observation: string;
+	series: ISeries;
 }
 
 export interface ISeries {
 	repetitions: number;
-	weight: {
-		value: number;
-		unit: string;
-		distribution: string;
-	};
+	weight: IWeight;
 	quantity: number;
-	rest: {
-		value: number;
-		unit: string;
-	};
+	rest: IRest;
+}
+
+export interface IWeight {
+	value: number;
+	unit: string;
+	distribution: string;
+}
+
+export interface IRest {
+	value: number;
+	unit: string;
 }
