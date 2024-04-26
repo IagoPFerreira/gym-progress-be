@@ -4,7 +4,7 @@ export enum ErrorTypes {
 	ObjectNotFound = 'ObjectNotFound',
 }
 
-type ErrorResponseObject = {
+export type ErrorResponseObject = {
 	message: string;
 	httpStatus: number;
 };
