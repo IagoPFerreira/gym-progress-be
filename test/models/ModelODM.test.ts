@@ -7,17 +7,17 @@ import {
 	supino,
 	todosExerciciosModel,
 } from '../dummies/exercises';
-import Equipment from '../../src/entities/Equipment';
-import Exercise from '../../src/entities/Exercise';
-import MuscleGroup from '../../src/entities/MuscleGroup';
-import Serie from '../../src/entities/Serie';
+import EquipmentEntity from '../../src/entities/Equipment.entity';
+import ExerciseEntity from '../../src/entities/Exercise.entity';
+import MuscleGroupEntity from '../../src/entities/MuscleGroup.entity';
+import SerieEntity from '../../src/entities/Serie.entity';
 
 describe('Exercise Aggregate Model', () => {
 	describe('Success cases', () => {
-		const exercise = new Exercise(supino.exercise);
-		const series = supino.series.map((serie) => new Serie(serie));
-		const equipment = new Equipment(supino.equipment);
-		const muscleGroup = new MuscleGroup(supino.muscleGroup);
+		const exercise = new ExerciseEntity(supino.exercise);
+		const series = supino.series.map((serie) => new SerieEntity(serie));
+		const equipment = new EquipmentEntity(supino.equipment);
+		const muscleGroup = new MuscleGroupEntity(supino.muscleGroup);
 		const { type, date, trainingDay, observation } = supino;
 		const exerciseAggregate = new ExerciseAggregateModel();
 
@@ -66,7 +66,7 @@ describe('Exercise Aggregate Model', () => {
 		describe('When updating an exercise aggregated by id', () => {
 			it('should return a object with all new infos', async () => {
 				const updateSeries = atualizadoModelSupino.series.map(
-					(serie) => new Serie(serie)
+					(serie) => new SerieEntity(serie)
 				);
 				const exerciseAggregated = await exerciseAggregate.update(
 					criadoModelSupino._id,

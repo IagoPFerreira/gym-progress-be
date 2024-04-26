@@ -1,23 +1,23 @@
-import Equipment from '../../src/entities/Equipment';
-import Exercise from '../../src/entities/Exercise';
-import ExerciseAggregate from '../../src/entities/ExerciseAggregate';
-import MuscleGroup from '../../src/entities/MuscleGroup';
-import Serie from '../../src/entities/Serie';
+import EquipmentEntity from '../../src/entities/Equipment.entity';
+import ExerciseEntity from '../../src/entities/Exercise.entity';
+import ExerciseAggregateEntity from '../../src/entities/ExerciseAggregate.entity';
+import MuscleGroupEntity from '../../src/entities/MuscleGroup.entity';
+import SerieEntity from '../../src/entities/Serie.entity';
 import { roscaDireta, supino } from '../dummies/exercises';
 
 describe('ExerciseAggregate', () => {
 	describe('Success cases', () => {
 		describe('When using the class', () => {
-			let exerciseAggregate: ExerciseAggregate;
+			let exerciseAggregate: ExerciseAggregateEntity;
 			const testeDate = new Date();
 
 			beforeAll(() => {
-				const exercise = new Exercise(supino.exercise);
-				const series = supino.series.map((serie) => new Serie(serie));
-				const equipment = new Equipment(supino.equipment);
-				const muscleGroup = new MuscleGroup(supino.muscleGroup);
+				const exercise = new ExerciseEntity(supino.exercise);
+				const series = supino.series.map((serie) => new SerieEntity(serie));
+				const equipment = new EquipmentEntity(supino.equipment);
+				const muscleGroup = new MuscleGroupEntity(supino.muscleGroup);
 				const { type, date, trainingDay, observation } = supino;
-				exerciseAggregate = new ExerciseAggregate({
+				exerciseAggregate = new ExerciseAggregateEntity({
 					exercise,
 					series,
 					equipment,
@@ -82,16 +82,16 @@ describe('ExerciseAggregate', () => {
 
 	describe('Failure cases', () => {
 		describe('When using the class', () => {
-			const exercise = new Exercise(roscaDireta.name);
-			const series = roscaDireta.series.map((serie) => new Serie(serie));
-			const equipment = new Equipment(roscaDireta.equipment);
-			const muscleGroup = new MuscleGroup(roscaDireta.muscleGroup);
+			const exercise = new ExerciseEntity(roscaDireta.name);
+			const series = roscaDireta.series.map((serie) => new SerieEntity(serie));
+			const equipment = new EquipmentEntity(roscaDireta.equipment);
+			const muscleGroup = new MuscleGroupEntity(roscaDireta.muscleGroup);
 			const { type, date, trainingDay, observation } = roscaDireta;
 			it('should not be able of instantiate without type', () => {
 				expect(
 					() =>
 						// @ts-ignore
-						new ExerciseAggregate({
+						new ExerciseAggregateEntity({
 							exercise,
 							series,
 							equipment,
@@ -107,7 +107,7 @@ describe('ExerciseAggregate', () => {
 				expect(
 					() =>
 						// @ts-ignore
-						new ExerciseAggregate({
+						new ExerciseAggregateEntity({
 							exercise,
 							series,
 							equipment,
@@ -123,7 +123,7 @@ describe('ExerciseAggregate', () => {
 				expect(
 					() =>
 						// @ts-ignore
-						new ExerciseAggregate({
+						new ExerciseAggregateEntity({
 							exercise,
 							series,
 							equipment,
@@ -139,7 +139,7 @@ describe('ExerciseAggregate', () => {
 				expect(
 					() =>
 						// @ts-ignore
-						new ExerciseAggregate({
+						new ExerciseAggregateEntity({
 							exercise,
 							series,
 							equipment,
