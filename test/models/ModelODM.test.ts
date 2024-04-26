@@ -26,7 +26,7 @@ describe('Exercise Aggregate Model', () => {
 			sinon.stub(Model, 'find').resolves(todosExerciciosModel);
 			sinon.stub(Model, 'findOne').resolves(criadoModelSupino);
 			sinon.stub(Model, 'findOneAndUpdate').resolves(atualizadoModelSupino);
-			// sinon.stub(Model, 'findByIdAndDelete').resolves(createdCar);
+			sinon.stub(Model, 'findByIdAndDelete').resolves(criadoModelSupino);
 		});
 
 		afterAll(() => {
@@ -84,6 +84,15 @@ describe('Exercise Aggregate Model', () => {
 				expect(exerciseAggregated).toMatchObject(atualizadoModelSupino);
 			});
 		});
+
+		describe('When deleting an exercise aggregated by id', () => {
+			it('should return a object with all infos', async () => {
+				const deletedExercise = await exerciseAggregate.delete(
+					criadoModelSupino._id
+				);
+				expect(deletedExercise).toMatchObject(criadoModelSupino);
+			});
+		});
 	});
 
 	describe('Failure cases', () => {
@@ -94,7 +103,6 @@ describe('Exercise Aggregate Model', () => {
 					// @ts-ignore
 					await exerciseAggregate.create({});
 				} catch (error: any) {
-					console.log(error.message);
 					expect(error.message).toBe('InvalidInfo');
 				}
 			});
@@ -114,7 +122,6 @@ describe('Exercise Aggregate Model', () => {
 				try {
 					await exerciseAggregate.readOne('6321e977c705e38f871148c');
 				} catch (error: any) {
-					console.log(error.message);
 					expect(error.message).toBe('InvalidMongoId');
 				}
 			});
@@ -126,7 +133,16 @@ describe('Exercise Aggregate Model', () => {
 					// @ts-ignore
 					await exerciseAggregate.update('6321e977c705e38f871148c', {});
 				} catch (error: any) {
-					console.log(error.message);
+					expect(error.message).toBe('InvalidMongoId');
+				}
+			});
+		});
+
+		describe('When deleting an exercise aggregated by id', () => {
+			it('should return a "InvalidMongoId" error', async () => {
+				try {
+					await exerciseAggregate.delete('6321e977c705e38f871148c');
+				} catch (error: any) {
 					expect(error.message).toBe('InvalidMongoId');
 				}
 			});
