@@ -33,7 +33,7 @@ describe('ExerciseAggregate', () => {
 			});
 
 			it('should be able of access exercise infos', () => {
-				expect(exerciseAggregate.exercise).toBe('supino');
+				expect(exerciseAggregate.exercise.name).toBe('supino');
 			});
 
 			it('should be able of access series', () => {
@@ -55,11 +55,11 @@ describe('ExerciseAggregate', () => {
 			});
 
 			it('should be able of access equipment', () => {
-				expect(exerciseAggregate.equipment).toBe('barra');
+				expect(exerciseAggregate.equipment.name).toBe('barra');
 			});
 
 			it('should be able of access muscleGroup', () => {
-				expect(exerciseAggregate.muscleGroup).toBe('peitoral');
+				expect(exerciseAggregate.muscleGroup.name).toBe('peitoral');
 			});
 
 			it('should be able of access type', () => {
