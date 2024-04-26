@@ -2,7 +2,7 @@ import Equipment from '../../src/entities/Equipment';
 import Exercise from '../../src/entities/Exercise';
 import ExerciseAggregate from '../../src/entities/ExerciseAggregate';
 import MuscleGroup from '../../src/entities/MuscleGroup';
-import Series from '../../src/entities/Series';
+import Serie from '../../src/entities/Serie';
 import { roscaDireta, supino } from './dummies/exercises';
 
 describe('ExerciseAggregate', () => {
@@ -10,11 +10,10 @@ describe('ExerciseAggregate', () => {
 		describe('When using the class', () => {
 			let exerciseAggregate: ExerciseAggregate;
 			const testeDate = new Date();
-			console.log(testeDate.toLocaleDateString('pt-BR'));
 
 			beforeAll(() => {
 				const exercise = new Exercise(supino.name);
-				const series = new Series(supino.series);
+				const series = supino.series.map((serie) => new Serie(serie));
 				const equipment = new Equipment(supino.equipment);
 				const muscleGroup = new MuscleGroup(supino.muscleGroup);
 				const { type, date, trainingDay, observation } = supino;
@@ -38,19 +37,21 @@ describe('ExerciseAggregate', () => {
 			});
 
 			it('should be able of access series', () => {
-				expect(exerciseAggregate.series).toMatchObject({
-					repetitions: 10,
-					weight: {
-						value: 20,
-						unit: 'kg',
-						distribution: 'cada lado',
+				expect(exerciseAggregate.series).toMatchObject([
+					{
+						repetitions: 10,
+						weight: {
+							value: 20,
+							unit: 'kg',
+							distribution: 'cada lado',
+						},
+						quantity: 4,
+						rest: {
+							value: 1,
+							unit: 'min',
+						},
 					},
-					quantity: 4,
-					rest: {
-						value: 1,
-						unit: 'min',
-					},
-				});
+				]);
 			});
 
 			it('should be able of access equipment', () => {
@@ -82,7 +83,7 @@ describe('ExerciseAggregate', () => {
 	describe('Failure cases', () => {
 		describe('When using the class', () => {
 			const exercise = new Exercise(roscaDireta.name);
-			const series = new Series(roscaDireta.series);
+			const series = roscaDireta.series.map((serie) => new Serie(serie));
 			const equipment = new Equipment(roscaDireta.equipment);
 			const muscleGroup = new MuscleGroup(roscaDireta.muscleGroup);
 			const { type, date, trainingDay, observation } = roscaDireta;
