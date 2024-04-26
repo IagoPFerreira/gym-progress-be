@@ -43,4 +43,10 @@ export default abstract class ModelODM<T> implements IModel<T> {
 
 		return this._entity.findOneAndUpdate({ _id }, obj as UpdateQuery<T>);
 	}
+
+	public async delete(_id: string): Promise<T | null> {
+		if (!isValidObjectId(_id)) throw Error(ErrorTypes.InvalidMongoId);
+
+		return this._entity.findByIdAndDelete(_id);
+	}
 }
