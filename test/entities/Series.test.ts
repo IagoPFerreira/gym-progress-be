@@ -1,4 +1,4 @@
-import Series from '../../src/entities/Series';
+import Serie from '../../src/entities/Serie';
 import { supino } from './dummies/exercises';
 import {
 	serieWithInvalidRests,
@@ -11,17 +11,17 @@ describe('Series', () => {
 	describe('Success cases', () => {
 		describe('When using the class', () => {
 			it('should be able of instantiate', () => {
-				const series = new Series(supino.series);
+				const [series] = supino.series.map((serie) => new Serie(serie));
 				expect(series).toBeDefined();
 			});
 
 			it('should be able of access series repetition', () => {
-				const series = new Series(supino.series);
+				const [series] = supino.series.map((serie) => new Serie(serie));
 				expect(series.repetitions).toBe(10);
 			});
 
 			it('should be able of access series weight', () => {
-				const series = new Series(supino.series);
+				const [series] = supino.series.map((serie) => new Serie(serie));
 				expect(series.weight).toMatchObject({
 					value: 20,
 					unit: 'kg',
@@ -30,12 +30,12 @@ describe('Series', () => {
 			});
 
 			it('should be able of access series quantity', () => {
-				const series = new Series(supino.series);
+				const [series] = supino.series.map((serie) => new Serie(serie));
 				expect(series.quantity).toBe(4);
 			});
 
 			it('should be able of access series rest', () => {
-				const series = new Series(supino.series);
+				const [series] = supino.series.map((serie) => new Serie(serie));
 				expect(series.rest).toMatchObject({
 					value: 1,
 					unit: 'min',
@@ -48,12 +48,12 @@ describe('Series', () => {
 		describe('When using the class', () => {
 			it('should not be able of instantiate without series object', () => {
 				// @ts-ignore
-				expect(() => new Series()).toThrow('Invalid series');
+				expect(() => new Serie()).toThrow('Invalid series');
 			});
 
 			it('should not be able of instantiate without repetitions', () => {
 				// @ts-ignore
-				expect(() => new Series(serieWithoutRepetition)).toThrow(
+				expect(() => new Serie(serieWithoutRepetition)).toThrow(
 					'Invalid repetitions'
 				);
 			});
@@ -62,7 +62,7 @@ describe('Series', () => {
 				'should not be able of instantiate with invalid weights',
 				(serieWithInvalidWeight) => {
 					// @ts-ignore
-					expect(() => new Series(serieWithInvalidWeight)).toThrow(
+					expect(() => new Serie(serieWithInvalidWeight)).toThrow(
 						'Invalid weight'
 					);
 				}
@@ -70,7 +70,7 @@ describe('Series', () => {
 
 			it('should not be able of instantiate without quantity', () => {
 				// @ts-ignore
-				expect(() => new Series(serieWithoutQuantity)).toThrow(
+				expect(() => new Serie(serieWithoutQuantity)).toThrow(
 					'Invalid quantity'
 				);
 			});
@@ -79,9 +79,7 @@ describe('Series', () => {
 				'should not be able of instantiate with invalid rests',
 				(serieWithInvalidRest) => {
 					// @ts-ignore
-					expect(() => new Series(serieWithInvalidRest)).toThrow(
-						'Invalid rest'
-					);
+					expect(() => new Serie(serieWithInvalidRest)).toThrow('Invalid rest');
 				}
 			);
 		});
