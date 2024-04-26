@@ -129,10 +129,35 @@ export const todosExerciciosModel = [
 ];
 
 export const roscaDireta = {
-	name: 'rosca direta',
+	exercise: 'rosca direta',
 	series: [
 		{
 			repetitions: 10,
+			weight: {
+				value: 10,
+				unit: 'kg',
+				distribution: 'cada lado',
+			},
+			quantity: 4,
+			rest: {
+				value: 1,
+				unit: 'min',
+			},
+		},
+	],
+	equipment: 'halter',
+	type: 'força',
+	muscleGroup: 'bíceps',
+	date: '11/03/2024',
+	trainingDay: 1,
+	observation: 'nenhuma',
+};
+
+export const atualizadaRoscaDireta = {
+	exercise: 'rosca direta',
+	series: [
+		{
+			repetitions: 12,
 			weight: {
 				value: 10,
 				unit: 'kg',
