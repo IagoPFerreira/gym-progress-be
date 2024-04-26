@@ -15,6 +15,18 @@ export interface IExerciseAggregate {
 	series: Serie[];
 }
 
+export interface IExercise {
+	name: string;
+}
+
+export interface IEquipment {
+	name: string;
+}
+
+export interface IMuscleGroup {
+	name: string;
+}
+
 export interface ISeries {
 	repetitions: number;
 	weight: IWeight;
