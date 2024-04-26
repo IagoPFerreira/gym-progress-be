@@ -1,6 +1,6 @@
 import { IRest, ISeries, IWeight } from '../interfaces/Exercise';
 
-export default class Series {
+export default class Serie {
 	readonly repetitions: number;
 	readonly weight: IWeight;
 	readonly quantity: number;
