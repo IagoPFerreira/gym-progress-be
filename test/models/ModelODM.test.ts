@@ -10,7 +10,6 @@ import Equipment from '../../src/entities/Equipment';
 import Exercise from '../../src/entities/Exercise';
 import MuscleGroup from '../../src/entities/MuscleGroup';
 import Serie from '../../src/entities/Serie';
-import { ErrorTypes } from '../../src/errors/catalog';
 
 describe('Exercise Aggregate Model', () => {
 	describe('Success cases', () => {
@@ -25,8 +24,6 @@ describe('Exercise Aggregate Model', () => {
 			sinon.stub(Model, 'create').resolves([criadoModelSupino]);
 			sinon.stub(Model, 'find').resolves(todosExerciciosModel);
 			sinon.stub(Model, 'findOne').resolves(criadoModelSupino);
-			// sinon.stub(Model, 'findOneAndUpdate').resolves(updatedCar);
-			// sinon.stub(Model, 'findByIdAndDelete').resolves(createdCar);
 		});
 
 		afterAll(() => {
@@ -98,64 +95,4 @@ describe('Exercise Aggregate Model', () => {
 			});
 		});
 	});
-
-	// describe('GET /cars', () => {
-	//   describe('finding all cars', () => {
-	//     it('succesfully found', async () => {
-	//       const foundCar = await carModel.read()
-	//       expect(foundCar).to.be.deep.equal(allCars);
-	//     });
-	//   });
-	// });
-
-	// describe('GET /cars/:id', () => {
-	//   describe('finding a car', () => {
-	//     it('succesfully found', async () => {
-	//       const foundCar = await carModel.readOne(createdCar._id)
-	//       expect(foundCar).to.be.deep.equal(createdCar);
-	//     });
-	//   });
-
-	//   describe('not finding a car', () => {
-	//     it('with wrong id', async () => {
-	//     const promise = carModel.readOne('123ERRADO')
-
-	//     return expect(promise).to.eventually.be.rejectedWith(Error, ErrorTypes.InvalidMongoId);
-	//     });
-	//   });
-	// });
-
-	// describe('PUT /cars/:id', () => {
-	//   describe('updating a car', () => {
-	//     it('succesfully updated', async () => {
-	//       const updateCar = await carModel.update(createdCar._id, updatedCar)
-	//       expect(updateCar).to.be.deep.equal(updatedCar);
-	//     });
-	//   });
-
-	//   describe('not updating a car', () => {
-	//     it('with wrong id', async () => {
-	//     const promise = carModel.update('123ERRADO', updatedCar)
-
-	//     return expect(promise).to.eventually.be.rejectedWith(Error, ErrorTypes.InvalidMongoId);
-	//     });
-	//   });
-	// });
-
-	// describe('DELETE /cars/:id', () => {
-	//   describe('deleting a car', () => {
-	//     it('succesfully deleted', async () => {
-	//       const deletedCar = await carModel.delete(createdCar._id)
-	//       expect(deletedCar).to.be.deep.equal(createdCar);
-	//     });
-	//   });
-
-	//   describe('not deleting a car', () => {
-	//     it('with wrong id', async () => {
-	//     const promise = carModel.delete('123ERRADO')
-
-	//     return expect(promise).to.eventually.be.rejectedWith(Error, ErrorTypes.InvalidMongoId);
-	//     });
-	//   });
-	// });
 });
