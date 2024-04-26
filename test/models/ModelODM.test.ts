@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { Model } from 'mongoose';
-import ExerciseAggregate from '../../src/models/ExerciseAggregate';
+import ExerciseAggregateModel from '../../src/models/ExerciseAggregate.model';
 import {
 	atualizadoModelSupino,
 	criadoModelSupino,
@@ -19,7 +19,7 @@ describe('Exercise Aggregate Model', () => {
 		const equipment = new Equipment(supino.equipment);
 		const muscleGroup = new MuscleGroup(supino.muscleGroup);
 		const { type, date, trainingDay, observation } = supino;
-		const exerciseAggregate = new ExerciseAggregate();
+		const exerciseAggregate = new ExerciseAggregateModel();
 
 		beforeAll(async () => {
 			sinon.stub(Model, 'create').resolves([criadoModelSupino]);
@@ -96,7 +96,7 @@ describe('Exercise Aggregate Model', () => {
 	});
 
 	describe('Failure cases', () => {
-		const exerciseAggregate = new ExerciseAggregate();
+		const exerciseAggregate = new ExerciseAggregateModel();
 		describe('When creating a exercise aggregated', () => {
 			it('should return a error', async () => {
 				try {
