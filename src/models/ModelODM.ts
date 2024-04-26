@@ -16,4 +16,8 @@ export default abstract class ModelODM<T> implements IModel<T> {
 		const [exercise] = await this._entity.create([obj]);
 		return exercise;
 	}
+
+	public async read(): Promise<T[]> {
+		return this._entity.find();
+	}
 }
