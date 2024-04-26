@@ -1,7 +1,7 @@
-import Equipment from '../entities/Equipment';
-import Exercise from '../entities/Exercise';
-import MuscleGroup from '../entities/MuscleGroup';
-import Serie from '../entities/Serie';
+import Equipment from '../entities/Equipment.entity';
+import Exercise from '../entities/Exercise.entity';
+import MuscleGroup from '../entities/MuscleGroup.entity';
+import Serie from '../entities/Serie.entity';
 
 export interface IExerciseAggregate {
 	id?: string;
