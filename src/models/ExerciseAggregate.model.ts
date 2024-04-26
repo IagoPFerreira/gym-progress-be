@@ -1,4 +1,4 @@
-import exerciseAggregateSchema from '../Schemas/ExerciseAggregate.schema';
+import exerciseAggregateSchema from '../schemas/ExerciseAggregate.schema';
 import { IExerciseAggregate } from '../interfaces/Exercise';
 import ModelODM from './ModelODM';
 
