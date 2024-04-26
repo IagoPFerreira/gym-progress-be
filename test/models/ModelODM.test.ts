@@ -1,7 +1,11 @@
 import * as sinon from 'sinon';
 import { Model } from 'mongoose';
 import ExerciseAggregate from '../../src/models/ExerciseAggregate';
-import { criadoModelSupino, supino } from '../dummies/exercises';
+import {
+	criadoModelSupino,
+	supino,
+	todosExerciciosModel,
+} from '../dummies/exercises';
 import Equipment from '../../src/entities/Equipment';
 import Exercise from '../../src/entities/Exercise';
 import MuscleGroup from '../../src/entities/MuscleGroup';
@@ -18,6 +22,7 @@ describe('Exercise Aggregate Model', () => {
 
 		beforeAll(async () => {
 			sinon.stub(Model, 'create').resolves([criadoModelSupino]);
+			sinon.stub(Model, 'find').resolves(todosExerciciosModel);
 		});
 
 		afterAll(() => {
@@ -39,16 +44,32 @@ describe('Exercise Aggregate Model', () => {
 				expect(newExercise).toMatchObject(criadoModelSupino);
 			});
 		});
+
+		describe('When getting all exercises aggregated', () => {
+			it('should return a array with all exercises', async () => {
+				const allExercises = await exerciseAggregate.read();
+				expect(allExercises).toMatchObject(todosExerciciosModel);
+			});
+		});
 	});
 
 	describe('Failure cases', () => {
+		const exerciseAggregate = new ExerciseAggregate();
 		describe('When creating a exercise aggregated', () => {
 			it('should return a error', async () => {
-				const exerciseAggregate = new ExerciseAggregate();
 				// @ts-ignore
 				const promise = exerciseAggregate.create({});
 
 				return expect(promise).rejects.toThrow();
+			});
+		});
+
+		describe('When there is not any exercise aggregated', () => {
+			it('should return a empty array', async () => {
+				sinon.stub(Model, 'find').resolves([]);
+				const allExercises = await exerciseAggregate.read();
+				expect(allExercises).toMatchObject([]);
+				sinon.restore();
 			});
 		});
 	});
