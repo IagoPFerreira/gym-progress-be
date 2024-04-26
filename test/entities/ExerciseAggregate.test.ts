@@ -82,7 +82,7 @@ describe('ExerciseAggregate', () => {
 
 	describe('Failure cases', () => {
 		describe('When using the class', () => {
-			const exercise = new ExerciseEntity(roscaDireta.name);
+			const exercise = new ExerciseEntity(roscaDireta.exercise);
 			const series = roscaDireta.series.map((serie) => new SerieEntity(serie));
 			const equipment = new EquipmentEntity(roscaDireta.equipment);
 			const muscleGroup = new MuscleGroupEntity(roscaDireta.muscleGroup);
