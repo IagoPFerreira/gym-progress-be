@@ -12,7 +12,7 @@ describe('ExerciseAggregate', () => {
 			const testeDate = new Date();
 
 			beforeAll(() => {
-				const exercise = new Exercise(supino.name);
+				const exercise = new Exercise(supino.exercise);
 				const series = supino.series.map((serie) => new Serie(serie));
 				const equipment = new Equipment(supino.equipment);
 				const muscleGroup = new MuscleGroup(supino.muscleGroup);
