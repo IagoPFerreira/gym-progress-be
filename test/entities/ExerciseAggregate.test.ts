@@ -3,7 +3,7 @@ import Exercise from '../../src/entities/Exercise';
 import ExerciseAggregate from '../../src/entities/ExerciseAggregate';
 import MuscleGroup from '../../src/entities/MuscleGroup';
 import Series from '../../src/entities/Series';
-import { supino } from './dummies/exercises';
+import { roscaDireta, supino } from './dummies/exercises';
 
 describe('ExerciseAggregate', () => {
 	describe('Success cases', () => {
@@ -19,10 +19,10 @@ describe('ExerciseAggregate', () => {
 				const muscleGroup = new MuscleGroup(supino.muscleGroup);
 				const { type, date, trainingDay, observation } = supino;
 				exerciseAggregate = new ExerciseAggregate({
-					name: exercise.name,
+					exercise,
 					series,
-					equipment: equipment.name,
-					muscleGroup: muscleGroup.name,
+					equipment,
+					muscleGroup,
 					type,
 					date,
 					trainingDay,
@@ -34,7 +34,7 @@ describe('ExerciseAggregate', () => {
 			});
 
 			it('should be able of access exercise infos', () => {
-				expect(exerciseAggregate.name).toBe('supino');
+				expect(exerciseAggregate.exercise).toBe('supino');
 			});
 
 			it('should be able of access series', () => {
@@ -75,6 +75,81 @@ describe('ExerciseAggregate', () => {
 
 			it('should be able of access observation', () => {
 				expect(exerciseAggregate.observation).toBe('nenhuma');
+			});
+		});
+	});
+
+	describe('Failure cases', () => {
+		describe('When using the class', () => {
+			const exercise = new Exercise(roscaDireta.name);
+			const series = new Series(roscaDireta.series);
+			const equipment = new Equipment(roscaDireta.equipment);
+			const muscleGroup = new MuscleGroup(roscaDireta.muscleGroup);
+			const { type, date, trainingDay, observation } = roscaDireta;
+			it('should not be able of instantiate without type', () => {
+				expect(
+					() =>
+						// @ts-ignore
+						new ExerciseAggregate({
+							exercise,
+							series,
+							equipment,
+							muscleGroup,
+							date,
+							trainingDay,
+							observation,
+						})
+				).toThrow('Invalid type');
+			});
+
+			it('should not be able of instantiate without date', () => {
+				expect(
+					() =>
+						// @ts-ignore
+						new ExerciseAggregate({
+							exercise,
+							series,
+							equipment,
+							muscleGroup,
+							type,
+							trainingDay,
+							observation,
+						})
+				).toThrow('Invalid date');
+			});
+
+			it('should not be able of instantiate without trainingDay', () => {
+				expect(
+					() =>
+						// @ts-ignore
+						new ExerciseAggregate({
+							exercise,
+							series,
+							equipment,
+							muscleGroup,
+							type,
+							date,
+							observation,
+						})
+				).toThrow('Invalid training day');
+			});
+
+			it('should not be able of instantiate with a observation there is not a string', () => {
+				expect(
+					() =>
+						// @ts-ignore
+						new ExerciseAggregate({
+							exercise,
+							series,
+							equipment,
+							muscleGroup,
+							type,
+							date,
+							trainingDay,
+							// @ts-ignore
+							observation: 5,
+						})
+				).toThrow('Invalid observation');
 			});
 		});
 	});
