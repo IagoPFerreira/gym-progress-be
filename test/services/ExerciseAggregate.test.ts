@@ -12,13 +12,12 @@ import ExerciseAggregateEntity from '../../src/entities/ExerciseAggregate.entity
 import { IExerciseAggregate } from '../../src/interfaces/Exercise';
 
 describe('Exercise Aggregate Service', () => {
+	const exerciseAggregateModel = new ExerciseAggregateModel();
+	const exerciseAggregateService = new ExerciseAggregateService(
+		exerciseAggregateModel,
+		ExerciseAggregateEntity
+	);
 	describe('Success cases', () => {
-		const exerciseAggregateModel = new ExerciseAggregateModel();
-		const exerciseAggregateService = new ExerciseAggregateService(
-			exerciseAggregateModel,
-			ExerciseAggregateEntity
-		);
-
 		beforeAll(async () => {
 			sinon
 				.stub(exerciseAggregateModel, 'create')
@@ -83,5 +82,4 @@ describe('Exercise Aggregate Service', () => {
 			});
 		});
 	});
-	describe('Failure cases', () => {});
 });
