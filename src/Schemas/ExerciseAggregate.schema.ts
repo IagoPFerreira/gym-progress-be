@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import Serie from '../entities/Serie';
+import Serie from '../entities/Serie.entity';
 
 const exerciseAggregateSchema = new Schema({
 	exercise: { type: String, required: true },
