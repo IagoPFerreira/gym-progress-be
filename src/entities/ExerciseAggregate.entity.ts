@@ -1,6 +1,6 @@
 import { IExerciseAggregate, ISeries } from '../interfaces/Exercise';
 
-export default class ExerciseAggregate {
+export default class ExerciseAggregateEntity {
 	readonly exercise: string;
 	readonly series: ISeries[];
 	readonly equipment: string;
