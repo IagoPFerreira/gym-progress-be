@@ -1,13 +1,18 @@
+import Equipment from '../entities/Equipment';
+import Exercise from '../entities/Exercise';
+import MuscleGroup from '../entities/MuscleGroup';
+import Series from '../entities/Series';
+
 export interface IExerciseAggregate {
 	id?: string;
-	name: string;
-	equipment: string;
+	exercise: Exercise;
+	equipment: Equipment;
 	type: string;
-	muscleGroup: string;
+	muscleGroup: MuscleGroup;
 	date: string;
 	trainingDay: number;
-	observation: string;
-	series: ISeries;
+	observation?: string;
+	series: Series;
 }
 
 export interface ISeries {
