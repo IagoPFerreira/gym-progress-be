@@ -34,7 +34,7 @@ abstract class Service<T, E> implements IService<T> {
 
 		if (!updated) throw new Error(ErrorTypes.ObjectNotFound);
 
-		return updated;
+		return obj;
 	}
 
 	public async delete(id: string): Promise<T> {
