@@ -2,6 +2,7 @@ import * as sinon from 'sinon';
 import { Model } from 'mongoose';
 import ExerciseAggregate from '../../src/models/ExerciseAggregate';
 import {
+	atualizadoModelSupino,
 	criadoModelSupino,
 	supino,
 	todosExerciciosModel,
@@ -24,6 +25,8 @@ describe('Exercise Aggregate Model', () => {
 			sinon.stub(Model, 'create').resolves([criadoModelSupino]);
 			sinon.stub(Model, 'find').resolves(todosExerciciosModel);
 			sinon.stub(Model, 'findOne').resolves(criadoModelSupino);
+			sinon.stub(Model, 'findOneAndUpdate').resolves(atualizadoModelSupino);
+			// sinon.stub(Model, 'findByIdAndDelete').resolves(createdCar);
 		});
 
 		afterAll(() => {
@@ -59,6 +62,28 @@ describe('Exercise Aggregate Model', () => {
 				expect(exercise).toMatchObject(criadoModelSupino);
 			});
 		});
+
+		describe('When updating an exercise aggregated by id', () => {
+			it('should return a object with all new infos', async () => {
+				const updateSeries = atualizadoModelSupino.series.map(
+					(serie) => new Serie(serie)
+				);
+				const exerciseAggregated = await exerciseAggregate.update(
+					criadoModelSupino._id,
+					{
+						exercise,
+						series: updateSeries,
+						equipment,
+						muscleGroup,
+						type,
+						date,
+						trainingDay,
+						observation,
+					}
+				);
+				expect(exerciseAggregated).toMatchObject(atualizadoModelSupino);
+			});
+		});
 	});
 
 	describe('Failure cases', () => {
@@ -88,6 +113,18 @@ describe('Exercise Aggregate Model', () => {
 			it('should return a "InvalidMongoId" error', async () => {
 				try {
 					await exerciseAggregate.readOne('6321e977c705e38f871148c');
+				} catch (error: any) {
+					console.log(error.message);
+					expect(error.message).toBe('InvalidMongoId');
+				}
+			});
+		});
+
+		describe('When updating an exercise aggregated by id', () => {
+			it('should return a "InvalidMongoId" error', async () => {
+				try {
+					// @ts-ignore
+					await exerciseAggregate.update('6321e977c705e38f871148c', {});
 				} catch (error: any) {
 					console.log(error.message);
 					expect(error.message).toBe('InvalidMongoId');
