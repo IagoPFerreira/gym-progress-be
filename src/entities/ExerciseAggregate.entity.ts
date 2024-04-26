@@ -1,10 +1,16 @@
-import { IExerciseAggregate, ISeries } from '../interfaces/Exercise';
+import {
+	IEquipment,
+	IExercise,
+	IExerciseAggregate,
+	IMuscleGroup,
+	ISeries,
+} from '../interfaces/Exercise';
 
 export default class ExerciseAggregateEntity {
-	readonly exercise: string;
+	readonly exercise: IExercise;
 	readonly series: ISeries[];
-	readonly equipment: string;
-	readonly muscleGroup: string;
+	readonly equipment: IEquipment;
+	readonly muscleGroup: IMuscleGroup;
 	readonly type: string;
 	readonly date: string;
 	readonly trainingDay: number;
@@ -22,10 +28,10 @@ export default class ExerciseAggregateEntity {
 			observation,
 		} = exerciseAggregate;
 
-		this.exercise = exercise.name;
+		this.exercise = exercise;
 		this.series = series;
-		this.equipment = equipment.name;
-		this.muscleGroup = muscleGroup.name;
+		this.equipment = equipment;
+		this.muscleGroup = muscleGroup;
 		this.validateType(type);
 		this.type = type;
 		this.validateDate(date);
