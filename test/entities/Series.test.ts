@@ -1,11 +1,11 @@
 import Serie from '../../src/entities/Serie';
-import { supino } from './dummies/exercises';
+import { supino } from '../dummies/exercises';
 import {
 	serieWithInvalidRests,
 	serieWithInvalidWeights,
 	serieWithoutQuantity,
 	serieWithoutRepetition,
-} from './dummies/series';
+} from '../dummies/series';
 
 describe('Series', () => {
 	describe('Success cases', () => {

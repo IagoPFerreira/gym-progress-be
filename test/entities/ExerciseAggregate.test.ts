@@ -3,7 +3,7 @@ import Exercise from '../../src/entities/Exercise';
 import ExerciseAggregate from '../../src/entities/ExerciseAggregate';
 import MuscleGroup from '../../src/entities/MuscleGroup';
 import Serie from '../../src/entities/Serie';
-import { roscaDireta, supino } from './dummies/exercises';
+import { roscaDireta, supino } from '../dummies/exercises';
 
 describe('ExerciseAggregate', () => {
 	describe('Success cases', () => {

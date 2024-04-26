@@ -1,5 +1,5 @@
 import Equipment from '../../src/entities/Equipment';
-import { supino } from './dummies/exercises';
+import { supino } from '../dummies/exercises';
 
 describe('Equipment', () => {
 	describe('Success cases', () => {

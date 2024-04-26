@@ -1,5 +1,5 @@
 import Exercise from '../../src/entities/Exercise';
-import { supino } from './dummies/exercises';
+import { supino } from '../dummies/exercises';
 
 describe('Exercise', () => {
 	describe('Success cases', () => {
