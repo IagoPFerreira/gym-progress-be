@@ -1,12 +1,8 @@
 import { IExerciseAggregate, ISeries } from '../interfaces/Exercise';
-import Equipment from './Equipment';
-import Exercise from './Exercise';
-import MuscleGroup from './MuscleGroup';
-import Series from './Series';
 
 export default class ExerciseAggregate {
 	readonly exercise: string;
-	readonly series: ISeries;
+	readonly series: ISeries[];
 	readonly equipment: string;
 	readonly muscleGroup: string;
 	readonly type: string;
