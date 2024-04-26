@@ -1,5 +1,6 @@
-import { Schema, models, model, Model } from 'mongoose';
+import { Schema, models, model, Model, isValidObjectId } from 'mongoose';
 import { IModel } from '../interfaces/IModel';
+import { ErrorTypes } from '../errors/catalog';
 
 export default abstract class ModelODM<T> implements IModel<T> {
 	protected _entity: Model<T>;
@@ -13,11 +14,20 @@ export default abstract class ModelODM<T> implements IModel<T> {
 	}
 
 	public async create(obj: T): Promise<T> {
-		const [exercise] = await this._entity.create([obj]);
-		return exercise;
+		try {
+			const [exercise] = await this._entity.create([obj]);
+			return exercise;
+		} catch (error) {
+			throw Error(ErrorTypes.InvalidInfo);
+		}
 	}
 
 	public async read(): Promise<T[]> {
 		return this._entity.find();
+	}
+
+	public async readOne(_id: string): Promise<T | null> {
+		if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
+		return this._entity.findOne({ _id });
 	}
 }
