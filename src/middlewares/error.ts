@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { ErrorTypes, errorCatalog } from '../errors/catalog';
+import InformationError from '../errors/InformationError';
 
 class ErrorHandler {
 	public static handle(
@@ -8,6 +9,10 @@ class ErrorHandler {
 		res: Response,
 		_next: NextFunction
 	) {
+		if (error instanceof InformationError) {
+			return res.status(error.status).json({ error: error.message });
+		}
+
 		const messageAsErrorType = error.message as keyof typeof ErrorTypes;
 
 		const mappedError = errorCatalog[messageAsErrorType];
