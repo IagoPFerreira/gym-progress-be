@@ -1,3 +1,5 @@
+import InformationError from '../errors/InformationError';
+import { ErrorMessages } from '../errors/catalog';
 import { IRest, ISeries, IWeight } from '../interfaces/Exercise';
 
 export default class SerieEntity {
@@ -20,7 +22,7 @@ export default class SerieEntity {
 
 	private validateRepetition(repetitions: number) {
 		if (!repetitions || typeof repetitions !== 'number')
-			throw new Error('Invalid repetitions');
+			throw new InformationError(ErrorMessages.InvalidRepetitions);
 	}
 
 	private validateWeight(weight: {
@@ -28,25 +30,25 @@ export default class SerieEntity {
 		unit: string;
 		distribution: string;
 	}) {
-		if (!weight) throw new Error('Invalid weight');
+		if (!weight) throw new InformationError(ErrorMessages.InvalidWeight);
 		if (!weight.value || typeof weight.value !== 'number')
-			throw new Error('Invalid weight');
+			throw new InformationError(ErrorMessages.InvalidWeight);
 		if (!weight.unit || typeof weight.unit !== 'string')
-			throw new Error('Invalid weight');
+			throw new InformationError(ErrorMessages.InvalidWeight);
 		if (!weight.distribution || typeof weight.distribution !== 'string')
-			throw new Error('Invalid weight');
+			throw new InformationError(ErrorMessages.InvalidWeight);
 	}
 
 	private validateQuantity(quantity: number) {
 		if (!quantity || typeof quantity !== 'number')
-			throw new Error('Invalid quantity');
+			throw new InformationError(ErrorMessages.InvalidQuantity);
 	}
 
 	private validateRest(rest: { value: number; unit: string }) {
-		if (!rest) throw new Error('Invalid rest');
+		if (!rest) throw new InformationError(ErrorMessages.InvalidRest);
 		if (!rest.value || typeof rest.value !== 'number')
-			throw new Error('Invalid rest');
+			throw new InformationError(ErrorMessages.InvalidRest);
 		if (!rest.unit || typeof rest.unit !== 'string')
-			throw new Error('Invalid rest');
+			throw new InformationError(ErrorMessages.InvalidRest);
 	}
 }

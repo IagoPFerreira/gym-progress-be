@@ -1,3 +1,5 @@
+import InformationError from '../errors/InformationError';
+import { ErrorMessages } from '../errors/catalog';
 import {
 	IEquipment,
 	IExercise,
@@ -44,20 +46,22 @@ export default class ExerciseAggregateEntity {
 	}
 
 	private validateType(type: string) {
-		if (!type || typeof type !== 'string') throw new Error('Invalid type');
+		if (!type || typeof type !== 'string')
+			throw new InformationError(ErrorMessages.InvalidType);
 	}
 
 	private validateDate(date: string) {
-		if (!date || typeof date !== 'string') throw new Error('Invalid date');
+		if (!date || typeof date !== 'string')
+			throw new InformationError(ErrorMessages.InvalidDate);
 	}
 
 	private validateTrainingDay(trainingDay: number) {
 		if (!trainingDay || typeof trainingDay !== 'number')
-			throw new Error('Invalid training day');
+			throw new InformationError(ErrorMessages.InvalidTrainingDay);
 	}
 
 	private validateObservation(observation: string | undefined) {
 		if (observation === undefined || typeof observation !== 'string')
-			throw new Error('Invalid observation');
+			throw new InformationError(ErrorMessages.InvalidObservation);
 	}
 }
