@@ -20,22 +20,24 @@ describe('Exercise', () => {
 		describe('When using the class', () => {
 			it('should not be able of instantiate without name', () => {
 				// @ts-ignore
-				expect(() => new ExerciseEntity(undefined)).toThrow('Invalid name');
+				expect(() => new ExerciseEntity(undefined)).toThrow(
+					'Invalid exercise name'
+				);
 			});
 
 			it('should not be able of instantiate without name as string', () => {
 				// @ts-ignore
-				expect(() => new ExerciseEntity(1)).toThrow('Invalid name');
+				expect(() => new ExerciseEntity(1)).toThrow('Invalid exercise name');
 			});
 
 			it('should not be able of instantiate without exercise', () => {
 				// @ts-ignore
-				expect(() => new ExerciseEntity()).toThrow('Invalid name');
+				expect(() => new ExerciseEntity()).toThrow('Invalid exercise name');
 			});
 
 			it('should not be able of instantiate with name as empty string', () => {
 				// @ts-ignore
-				expect(() => new ExerciseEntity('')).toThrow('Invalid name');
+				expect(() => new ExerciseEntity('')).toThrow('Invalid exercise name');
 			});
 		});
 	});

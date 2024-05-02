@@ -20,22 +20,24 @@ describe('Equipment', () => {
 		describe('When using the class', () => {
 			it('should not be able of instantiate without name', () => {
 				// @ts-ignore
-				expect(() => new EquipmentEntity(undefined)).toThrow('Invalid name');
+				expect(() => new EquipmentEntity(undefined)).toThrow(
+					'Invalid equipment name'
+				);
 			});
 
 			it('should not be able of instantiate without name as string', () => {
 				// @ts-ignore
-				expect(() => new EquipmentEntity(1)).toThrow('Invalid name');
+				expect(() => new EquipmentEntity(1)).toThrow('Invalid equipment name');
 			});
 
 			it('should not be able of instantiate without Equipment', () => {
 				// @ts-ignore
-				expect(() => new EquipmentEntity()).toThrow('Invalid name');
+				expect(() => new EquipmentEntity()).toThrow('Invalid equipment name');
 			});
 
 			it('should not be able of instantiate with name as empty string', () => {
 				// @ts-ignore
-				expect(() => new EquipmentEntity('')).toThrow('Invalid name');
+				expect(() => new EquipmentEntity('')).toThrow('Invalid equipment name');
 			});
 		});
 	});

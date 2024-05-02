@@ -20,22 +20,30 @@ describe('MuscleGroup', () => {
 		describe('When using the class', () => {
 			it('should not be able of instantiate without name', () => {
 				// @ts-ignore
-				expect(() => new MuscleGroupEntity(undefined)).toThrow('Invalid name');
+				expect(() => new MuscleGroupEntity(undefined)).toThrow(
+					'Invalid muscle group name'
+				);
 			});
 
 			it('should not be able of instantiate without name as string', () => {
 				// @ts-ignore
-				expect(() => new MuscleGroupEntity(1)).toThrow('Invalid name');
+				expect(() => new MuscleGroupEntity(1)).toThrow(
+					'Invalid muscle group name'
+				);
 			});
 
 			it('should not be able of instantiate without MuscleGroup', () => {
 				// @ts-ignore
-				expect(() => new MuscleGroupEntity()).toThrow('Invalid name');
+				expect(() => new MuscleGroupEntity()).toThrow(
+					'Invalid muscle group name'
+				);
 			});
 
 			it('should not be able of instantiate with name as empty string', () => {
 				// @ts-ignore
-				expect(() => new MuscleGroupEntity('')).toThrow('Invalid name');
+				expect(() => new MuscleGroupEntity('')).toThrow(
+					'Invalid muscle group name'
+				);
 			});
 		});
 	});
