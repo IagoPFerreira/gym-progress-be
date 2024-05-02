@@ -1,7 +1,7 @@
 import express from 'express';
 import 'express-async-errors';
 import exerciseRouter from './routes/exercise';
-import ErrorHandler from './middlewares/error';
+import ErrorHandler from './middlewares/error.middleware';
 
 const app = express();
 
