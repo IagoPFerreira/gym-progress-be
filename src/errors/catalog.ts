@@ -27,3 +27,18 @@ export const errorCatalog: ErrorCatalog = {
 		httpStatus: 404,
 	},
 };
+
+export enum ErrorMessages {
+	InvalidDate = 'Invalid date',
+	InvalidEquipmentName = 'Invalid equipment name',
+	InvalidExerciseName = 'Invalid exercise name',
+	InvalidQuantity = 'Invalid quantity',
+	InvalidMuscleGroupName = 'Invalid muscle group name',
+	InvalidObservation = 'Invalid observation',
+	InvalidRepetitions = 'Invalid repetitions',
+	InvalidRest = 'Invalid rest',
+	InvalidSeries = 'Invalid series',
+	InvalidTrainingDay = 'Invalid training day',
+	InvalidType = 'Invalid type',
+	InvalidWeight = 'Invalid weight',
+}
