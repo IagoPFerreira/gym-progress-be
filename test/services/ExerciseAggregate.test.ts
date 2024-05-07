@@ -82,4 +82,53 @@ describe('Exercise Aggregate Service', () => {
 			});
 		});
 	});
+
+	describe('Failure cases', () => {
+		beforeAll(async () => {
+			// @ts-ignore
+			sinon.stub(exerciseAggregateModel, 'read').resolves(null);
+			sinon.stub(exerciseAggregateModel, 'readOne').resolves(null);
+			sinon.stub(exerciseAggregateModel, 'update').resolves(null);
+			sinon.stub(exerciseAggregateModel, 'delete').resolves(null);
+		});
+
+		afterAll(() => {
+			sinon.restore();
+		});
+
+		describe('When trying to get all exercises aggregated and receiving null', () => {
+			it('should return an error', async () => {
+				expect(() => exerciseAggregateService.read()).rejects.toThrow(
+					'ObjectNotFound'
+				);
+			});
+		});
+
+		describe('When getting an exercise aggregated by id', () => {
+			it('should return a null object', async () => {
+				expect(() =>
+					exerciseAggregateService.readOne(curlExerciseCreated._id)
+				).rejects.toThrow('ObjectNotFound');
+			});
+		});
+
+		describe('When updating an exercise aggregated by id', () => {
+			it('should return a null object', async () => {
+				expect(() =>
+					exerciseAggregateService.update(
+						curlExerciseToUpdate._id,
+						curlExerciseToUpdate
+					)
+				).rejects.toThrow('ObjectNotFound');
+			});
+		});
+
+		describe('When deleting an exercise aggregated by id', () => {
+			it('should return a null object', async () => {
+				expect(() =>
+					exerciseAggregateService.delete(benchPressExerciseCreated._id)
+				).rejects.toThrow('ObjectNotFound');
+			});
+		});
+	});
 });
