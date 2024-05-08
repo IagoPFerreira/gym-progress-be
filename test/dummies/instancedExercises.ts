@@ -4,8 +4,12 @@ import MuscleGroupEntity from '../../src/entities/MuscleGroup.entity';
 import SerieEntity from '../../src/entities/Serie.entity';
 import { supino, roscaDireta, atualizadaRoscaDireta } from './exercises';
 
-export const benchPressExerciseEntity = new ExerciseEntity(supino.exercise);
-export const curlExerciseEntity = new ExerciseEntity(roscaDireta.exercise);
+export const benchPressExerciseEntity = new ExerciseEntity({
+	name: supino.exercise,
+});
+export const curlExerciseEntity = new ExerciseEntity({
+	name: roscaDireta.exercise,
+});
 
 export const benchPressSeriesEntity = supino.series.map(
 	(serie) => new SerieEntity(serie)
