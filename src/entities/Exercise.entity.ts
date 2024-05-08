@@ -1,10 +1,13 @@
 import InformationError from '../errors/InformationError';
 import { ErrorMessages } from '../errors/catalog';
+import { IExercise } from '../interfaces/Exercise';
 
 export default class ExerciseEntity {
-	constructor(readonly name: string) {
-		if (!name || typeof name !== 'string')
+	readonly name: string;
+	constructor(exercise: IExercise) {
+		if (!exercise.name || typeof exercise.name !== 'string') {
 			throw new InformationError(ErrorMessages.InvalidExerciseName);
-		this.name = name;
+		}
+		this.name = exercise.name;
 	}
 }
