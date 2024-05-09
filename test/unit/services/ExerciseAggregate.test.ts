@@ -1,15 +1,14 @@
 import sinon from 'sinon';
-import ExerciseAggregateModel from '../../src/models/ExerciseAggregate.model';
+import ExerciseAggregateModel from '../../../src/models/ExerciseAggregate.model';
 import {
 	benchPressExerciseToCreate,
 	allExercisesService,
 	benchPressExerciseCreated,
 	curlExerciseToUpdate,
 	curlExerciseCreated,
-} from '../dummies/instancedExercises';
-import ExerciseAggregateService from '../../src/services/ExerciseAggregate.service';
-import ExerciseAggregateEntity from '../../src/entities/ExerciseAggregate.entity';
-import { IExerciseAggregate } from '../../src/interfaces/Exercise';
+} from '../../dummies/instancedExercises';
+import ExerciseAggregateService from '../../../src/services/ExerciseAggregate.service';
+import ExerciseAggregateEntity from '../../../src/entities/ExerciseAggregate.entity';
 
 describe('Exercise Aggregate Service', () => {
 	const exerciseAggregateModel = new ExerciseAggregateModel();

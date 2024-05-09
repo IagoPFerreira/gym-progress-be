@@ -1,5 +1,5 @@
-import MuscleGroupEntity from '../../src/entities/MuscleGroup.entity';
-import { supino } from '../dummies/exercises';
+import MuscleGroupEntity from '../../../src/entities/MuscleGroup.entity';
+import { supino } from '../../dummies/exercises';
 
 describe('MuscleGroup', () => {
 	describe('Success cases', () => {

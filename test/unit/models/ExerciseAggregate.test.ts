@@ -1,16 +1,15 @@
 import * as sinon from 'sinon';
 import { Model } from 'mongoose';
-import ExerciseAggregateModel from '../../src/models/ExerciseAggregate.model';
+import ExerciseAggregateModel from '../../../src/models/ExerciseAggregate.model';
 import {
 	atualizadoModelSupino,
 	criadoModelSupino,
 	supino,
 	todosExerciciosModel,
-} from '../dummies/exercises';
-import EquipmentEntity from '../../src/entities/Equipment.entity';
-import ExerciseEntity from '../../src/entities/Exercise.entity';
-import MuscleGroupEntity from '../../src/entities/MuscleGroup.entity';
-import SerieEntity from '../../src/entities/Serie.entity';
+} from '../../dummies/exercises';
+import EquipmentEntity from '../../../src/entities/Equipment.entity';
+import MuscleGroupEntity from '../../../src/entities/MuscleGroup.entity';
+import SerieEntity from '../../../src/entities/Serie.entity';
 
 describe('Exercise Aggregate Model', () => {
 	describe('Success cases', () => {

@@ -1,7 +1,7 @@
-import ExerciseAggregateController from '../../src/controllers/ExerciseAggregate.controller';
-import ExerciseAggregateEntity from '../../src/entities/ExerciseAggregate.entity';
-import ExerciseAggregateModel from '../../src/models/ExerciseAggregate.model';
-import ExerciseAggregateService from '../../src/services/ExerciseAggregate.service';
+import ExerciseAggregateController from '../../../src/controllers/ExerciseAggregate.controller';
+import ExerciseAggregateEntity from '../../../src/entities/ExerciseAggregate.entity';
+import ExerciseAggregateModel from '../../../src/models/ExerciseAggregate.model';
+import ExerciseAggregateService from '../../../src/services/ExerciseAggregate.service';
 import sinon from 'sinon';
 import {
 	benchPressExerciseToCreate,
@@ -9,7 +9,7 @@ import {
 	benchPressExerciseCreated,
 	curlExerciseToUpdate,
 	curlExerciseCreated,
-} from '../dummies/instancedExercises';
+} from '../../dummies/instancedExercises';
 import { Request, Response } from 'express';
 
 describe('Exercise Aggregate Service', () => {

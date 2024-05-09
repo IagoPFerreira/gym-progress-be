@@ -1,6 +1,6 @@
-import InformationError from '../../src/errors/InformationError';
-import { ErrorTypes } from '../../src/errors/catalog';
-import ErrorHandler from '../../src/middlewares/error.middleware';
+import InformationError from '../../../src/errors/InformationError';
+import { ErrorTypes } from '../../../src/errors/catalog';
+import ErrorHandler from '../../../src/middlewares/error.middleware';
 
 describe('Error Middleware', () => {
 	const res = {

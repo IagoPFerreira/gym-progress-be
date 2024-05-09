@@ -1,9 +1,8 @@
-import EquipmentEntity from '../../src/entities/Equipment.entity';
-import ExerciseEntity from '../../src/entities/Exercise.entity';
-import ExerciseAggregateEntity from '../../src/entities/ExerciseAggregate.entity';
-import MuscleGroupEntity from '../../src/entities/MuscleGroup.entity';
-import SerieEntity from '../../src/entities/Serie.entity';
-import { roscaDireta, supino } from '../dummies/exercises';
+import EquipmentEntity from '../../../src/entities/Equipment.entity';
+import ExerciseAggregateEntity from '../../../src/entities/ExerciseAggregate.entity';
+import MuscleGroupEntity from '../../../src/entities/MuscleGroup.entity';
+import SerieEntity from '../../../src/entities/Serie.entity';
+import { roscaDireta, supino } from '../../dummies/exercises';
 
 describe('ExerciseAggregate', () => {
 	describe('Success cases', () => {
