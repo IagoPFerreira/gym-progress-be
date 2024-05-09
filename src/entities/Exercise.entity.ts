@@ -5,7 +5,7 @@ import { IExercise } from '../interfaces/Exercise';
 export default class ExerciseEntity {
 	readonly name: string;
 	constructor(exercise: IExercise) {
-		if (!exercise.name || typeof exercise.name !== 'string') {
+		if (!exercise || !exercise.name || typeof exercise.name !== 'string') {
 			throw new InformationError(ErrorMessages.InvalidExerciseName);
 		}
 		this.name = exercise.name;
