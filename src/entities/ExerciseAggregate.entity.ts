@@ -7,9 +7,10 @@ import {
 	IMuscleGroup,
 	ISeries,
 } from '../interfaces/Exercise';
+import ExerciseEntity from './Exercise.entity';
 
 export default class ExerciseAggregateEntity {
-	readonly exercise: IExercise;
+	readonly exercise: string;
 	readonly series: ISeries[];
 	readonly equipment: IEquipment;
 	readonly muscleGroup: IMuscleGroup;
@@ -30,7 +31,7 @@ export default class ExerciseAggregateEntity {
 			observation,
 		} = exerciseAggregate;
 
-		this.exercise = exercise;
+		this.exercise = new ExerciseEntity({ name: exercise }).name;
 		this.series = series;
 		this.equipment = equipment;
 		this.muscleGroup = muscleGroup;
