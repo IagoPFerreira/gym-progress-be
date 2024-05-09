@@ -46,7 +46,7 @@ export const {
 } = roscaDireta;
 
 export const benchPressExerciseToCreate = {
-	exercise: benchPressExerciseEntity,
+	exercise: benchPressExerciseEntity.name,
 	series: benchPressSeriesEntity,
 	equipment: benchPressEquipmentEntity,
 	muscleGroup: benchPressMuscleGroupEntity,
@@ -57,7 +57,7 @@ export const benchPressExerciseToCreate = {
 };
 
 export const curlExerciseToCreate = {
-	exercise: curlExerciseEntity,
+	exercise: curlExerciseEntity.name,
 	series: curlSeriesEntity,
 	equipment: curlEquipmentEntity,
 	muscleGroup: curlMuscleGroupEntity,
@@ -69,7 +69,7 @@ export const curlExerciseToCreate = {
 
 export const benchPressExerciseCreated = {
 	_id: '6321e977c705e38f871148ce',
-	exercise: benchPressExerciseEntity,
+	exercise: benchPressExerciseEntity.name,
 	series: benchPressSeriesEntity,
 	equipment: benchPressEquipmentEntity,
 	muscleGroup: benchPressMuscleGroupEntity,
@@ -81,7 +81,7 @@ export const benchPressExerciseCreated = {
 
 export const curlExerciseCreated = {
 	_id: '6321e977c705e38f871148cf',
-	exercise: curlExerciseEntity,
+	exercise: curlExerciseEntity.name,
 	series: curlSeriesEntity,
 	equipment: curlEquipmentEntity,
 	muscleGroup: curlMuscleGroupEntity,
@@ -93,7 +93,7 @@ export const curlExerciseCreated = {
 
 export const curlExerciseToUpdate = {
 	_id: '6321e977c705e38f871148cf',
-	exercise: curlExerciseEntity,
+	exercise: curlExerciseEntity.name,
 	series: curlToUpdateSeriesEntity,
 	equipment: curlEquipmentEntity,
 	muscleGroup: curlMuscleGroupEntity,

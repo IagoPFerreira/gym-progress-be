@@ -5,12 +5,12 @@ describe('Exercise', () => {
 	describe('Success cases', () => {
 		describe('When using the class', () => {
 			it('should be able of instantiate', () => {
-				const exercise = new ExerciseEntity(supino.exercise);
+				const exercise = new ExerciseEntity({ name: supino.exercise });
 				expect(exercise).toBeDefined();
 			});
 
 			it('should be able of access exercise infos', () => {
-				const exercise = new ExerciseEntity(supino.exercise);
+				const exercise = new ExerciseEntity({ name: supino.exercise });
 				expect(exercise.name).toBe('supino');
 			});
 		});

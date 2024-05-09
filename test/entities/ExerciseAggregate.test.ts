@@ -12,11 +12,10 @@ describe('ExerciseAggregate', () => {
 			const testeDate = new Date();
 
 			beforeAll(() => {
-				const exercise = new ExerciseEntity(supino.exercise);
 				const series = supino.series.map((serie) => new SerieEntity(serie));
 				const equipment = new EquipmentEntity(supino.equipment);
 				const muscleGroup = new MuscleGroupEntity(supino.muscleGroup);
-				const { type, date, trainingDay, observation } = supino;
+				const { exercise, type, date, trainingDay, observation } = supino;
 				exerciseAggregate = new ExerciseAggregateEntity({
 					exercise,
 					series,
@@ -33,7 +32,7 @@ describe('ExerciseAggregate', () => {
 			});
 
 			it('should be able of access exercise infos', () => {
-				expect(exerciseAggregate.exercise.name).toBe('supino');
+				expect(exerciseAggregate.exercise).toBe('supino');
 			});
 
 			it('should be able of access series', () => {
@@ -82,11 +81,10 @@ describe('ExerciseAggregate', () => {
 
 	describe('Failure cases', () => {
 		describe('When using the class', () => {
-			const exercise = new ExerciseEntity(roscaDireta.exercise);
 			const series = roscaDireta.series.map((serie) => new SerieEntity(serie));
 			const equipment = new EquipmentEntity(roscaDireta.equipment);
 			const muscleGroup = new MuscleGroupEntity(roscaDireta.muscleGroup);
-			const { type, date, trainingDay, observation } = roscaDireta;
+			const { exercise, type, date, trainingDay, observation } = roscaDireta;
 			it('should not be able of instantiate without type', () => {
 				expect(
 					() =>

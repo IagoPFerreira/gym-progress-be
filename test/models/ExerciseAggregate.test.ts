@@ -14,11 +14,10 @@ import SerieEntity from '../../src/entities/Serie.entity';
 
 describe('Exercise Aggregate Model', () => {
 	describe('Success cases', () => {
-		const exercise = new ExerciseEntity(supino.exercise);
 		const series = supino.series.map((serie) => new SerieEntity(serie));
 		const equipment = new EquipmentEntity(supino.equipment);
 		const muscleGroup = new MuscleGroupEntity(supino.muscleGroup);
-		const { type, date, trainingDay, observation } = supino;
+		const { exercise, type, date, trainingDay, observation } = supino;
 		const exerciseAggregate = new ExerciseAggregateModel();
 
 		beforeAll(async () => {
