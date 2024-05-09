@@ -1,9 +1,9 @@
-import exerciseAggregateSchema from '../schemas/ExerciseAggregate.schema';
+import exerciseSchema from '../schemas/Exercise.schema';
 import { IExercise } from '../interfaces/Exercise';
 import ModelODM from './ModelODM';
 
 export default class ExerciseModel extends ModelODM<IExercise> {
 	constructor() {
-		super(exerciseAggregateSchema, 'ExerciseAggregate');
+		super(exerciseSchema, 'Exercise');
 	}
 }
