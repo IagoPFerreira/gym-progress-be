@@ -5,7 +5,7 @@ import Serie from '../entities/Serie.entity';
 
 export interface IExerciseAggregate {
 	id?: string;
-	exercise: Exercise;
+	exercise: string;
 	equipment: Equipment;
 	type: string;
 	muscleGroup: MuscleGroup;
