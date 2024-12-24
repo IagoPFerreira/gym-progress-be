@@ -3,13 +3,13 @@ import { ErrorMessages } from '../errors/catalog';
 import {
 	IEquipment,
 	IExercise,
-	IExerciseAggregate,
+	IExecution,
 	IMuscleGroup,
 	ISeries,
 } from '../interfaces/Exercise';
 import ExerciseEntity from './Exercise.entity';
 
-export default class ExerciseAggregateEntity {
+export default class ExecutionEntity {
 	readonly exercise: string;
 	readonly series: ISeries[];
 	readonly equipment: IEquipment;
@@ -19,7 +19,7 @@ export default class ExerciseAggregateEntity {
 	readonly trainingDay: number;
 	readonly observation: string;
 
-	constructor(exerciseAggregate: IExerciseAggregate) {
+	constructor(execution: IExecution) {
 		const {
 			exercise,
 			series,
@@ -29,7 +29,7 @@ export default class ExerciseAggregateEntity {
 			type,
 			date,
 			observation,
-		} = exerciseAggregate;
+		} = execution;
 
 		this.exercise = new ExerciseEntity({ name: exercise }).name;
 		this.series = series;

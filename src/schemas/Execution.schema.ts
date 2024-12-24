@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
 import Serie from '../entities/Serie.entity';
 
-const exerciseAggregateSchema = new Schema(
+const executionSchema = new Schema(
 	{
 		exercise: { type: String, required: true },
 		series: [
@@ -29,4 +29,4 @@ const exerciseAggregateSchema = new Schema(
 	{ versionKey: false }
 );
 
-export default exerciseAggregateSchema;
+export default executionSchema;
