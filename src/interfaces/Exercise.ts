@@ -3,7 +3,7 @@ import Exercise from '../entities/Exercise.entity';
 import MuscleGroup from '../entities/MuscleGroup.entity';
 import Serie from '../entities/Serie.entity';
 
-export interface IExerciseAggregate {
+export interface IExecution {
 	id?: string;
 	exercise: string;
 	equipment: Equipment;
