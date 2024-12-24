@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import ExerciseAggregateModel from '../../../src/models/ExerciseAggregate.model';
+import ExecutionModel from '../../../src/models/Execution.model';
 import {
 	benchPressExerciseToCreate,
 	allExercisesService,
@@ -7,30 +7,22 @@ import {
 	curlExerciseToUpdate,
 	curlExerciseCreated,
 } from '../../dummies/instancedExercises';
-import ExerciseAggregateService from '../../../src/services/ExerciseAggregate.service';
-import ExerciseAggregateEntity from '../../../src/entities/ExerciseAggregate.entity';
+import ExecutionService from '../../../src/services/Execution.service';
+import ExecutionEntity from '../../../src/entities/Execution.entity';
 
 describe('Exercise Aggregate Service', () => {
-	const exerciseAggregateModel = new ExerciseAggregateModel();
-	const exerciseAggregateService = new ExerciseAggregateService(
-		exerciseAggregateModel,
-		ExerciseAggregateEntity
+	const executionModel = new ExecutionModel();
+	const executionService = new ExecutionService(
+		executionModel,
+		ExecutionEntity
 	);
 	describe('Success cases', () => {
 		beforeAll(async () => {
-			sinon
-				.stub(exerciseAggregateModel, 'create')
-				.resolves(benchPressExerciseCreated);
-			sinon.stub(exerciseAggregateModel, 'read').resolves(allExercisesService);
-			sinon
-				.stub(exerciseAggregateModel, 'readOne')
-				.resolves(curlExerciseCreated);
-			sinon
-				.stub(exerciseAggregateModel, 'update')
-				.resolves(curlExerciseToUpdate);
-			sinon
-				.stub(exerciseAggregateModel, 'delete')
-				.resolves(benchPressExerciseToCreate);
+			sinon.stub(executionModel, 'create').resolves(benchPressExerciseCreated);
+			sinon.stub(executionModel, 'read').resolves(allExercisesService);
+			sinon.stub(executionModel, 'readOne').resolves(curlExerciseCreated);
+			sinon.stub(executionModel, 'update').resolves(curlExerciseToUpdate);
+			sinon.stub(executionModel, 'delete').resolves(benchPressExerciseToCreate);
 		});
 
 		afterAll(() => {
@@ -39,7 +31,7 @@ describe('Exercise Aggregate Service', () => {
 
 		describe('When creating a exercise aggregated', () => {
 			it('should return a object with all infos', async () => {
-				const newExercise = await exerciseAggregateService.create(
+				const newExercise = await executionService.create(
 					benchPressExerciseToCreate
 				);
 				expect(newExercise).toMatchObject(benchPressExerciseCreated);
@@ -48,14 +40,14 @@ describe('Exercise Aggregate Service', () => {
 
 		describe('When getting all exercises aggregated', () => {
 			it('should return a array with all exercises', async () => {
-				const allExercises = await exerciseAggregateService.read();
+				const allExercises = await executionService.read();
 				expect(allExercises).toMatchObject(allExercisesService);
 			});
 		});
 
 		describe('When getting an exercise aggregated by id', () => {
 			it('should return a object with all infos', async () => {
-				const exercise = await exerciseAggregateService.readOne(
+				const exercise = await executionService.readOne(
 					curlExerciseCreated._id
 				);
 				expect(exercise).toMatchObject(curlExerciseCreated);
@@ -64,7 +56,7 @@ describe('Exercise Aggregate Service', () => {
 
 		describe('When updating an exercise aggregated by id', () => {
 			it('should return a object with all infos', async () => {
-				const exercise = await exerciseAggregateService.update(
+				const exercise = await executionService.update(
 					curlExerciseToUpdate._id,
 					curlExerciseToUpdate
 				);
@@ -74,7 +66,7 @@ describe('Exercise Aggregate Service', () => {
 
 		describe('When deleting an exercise aggregated by id', () => {
 			it('should return a object with all infos', async () => {
-				const exercise = await exerciseAggregateService.delete(
+				const exercise = await executionService.delete(
 					benchPressExerciseCreated._id
 				);
 				expect(exercise).toMatchObject(benchPressExerciseToCreate);
@@ -85,10 +77,10 @@ describe('Exercise Aggregate Service', () => {
 	describe('Failure cases', () => {
 		beforeAll(async () => {
 			// @ts-ignore
-			sinon.stub(exerciseAggregateModel, 'read').resolves(null);
-			sinon.stub(exerciseAggregateModel, 'readOne').resolves(null);
-			sinon.stub(exerciseAggregateModel, 'update').resolves(null);
-			sinon.stub(exerciseAggregateModel, 'delete').resolves(null);
+			sinon.stub(executionModel, 'read').resolves(null);
+			sinon.stub(executionModel, 'readOne').resolves(null);
+			sinon.stub(executionModel, 'update').resolves(null);
+			sinon.stub(executionModel, 'delete').resolves(null);
 		});
 
 		afterAll(() => {
@@ -97,16 +89,14 @@ describe('Exercise Aggregate Service', () => {
 
 		describe('When trying to get all exercises aggregated and receiving null', () => {
 			it('should return an error', async () => {
-				expect(() => exerciseAggregateService.read()).rejects.toThrow(
-					'ObjectNotFound'
-				);
+				expect(() => executionService.read()).rejects.toThrow('ObjectNotFound');
 			});
 		});
 
 		describe('When getting an exercise aggregated by id', () => {
 			it('should return a null object', async () => {
 				expect(() =>
-					exerciseAggregateService.readOne(curlExerciseCreated._id)
+					executionService.readOne(curlExerciseCreated._id)
 				).rejects.toThrow('ObjectNotFound');
 			});
 		});
@@ -114,7 +104,7 @@ describe('Exercise Aggregate Service', () => {
 		describe('When updating an exercise aggregated by id', () => {
 			it('should return a null object', async () => {
 				expect(() =>
-					exerciseAggregateService.update(
+					executionService.update(
 						curlExerciseToUpdate._id,
 						curlExerciseToUpdate
 					)
@@ -125,7 +115,7 @@ describe('Exercise Aggregate Service', () => {
 		describe('When deleting an exercise aggregated by id', () => {
 			it('should return a null object', async () => {
 				expect(() =>
-					exerciseAggregateService.delete(benchPressExerciseCreated._id)
+					executionService.delete(benchPressExerciseCreated._id)
 				).rejects.toThrow('ObjectNotFound');
 			});
 		});

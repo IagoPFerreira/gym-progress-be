@@ -1,13 +1,13 @@
 import EquipmentEntity from '../../../src/entities/Equipment.entity';
-import ExerciseAggregateEntity from '../../../src/entities/ExerciseAggregate.entity';
+import ExecutionEntity from '../../../src/entities/Execution.entity';
 import MuscleGroupEntity from '../../../src/entities/MuscleGroup.entity';
 import SerieEntity from '../../../src/entities/Serie.entity';
 import { roscaDireta, supino } from '../../dummies/exercises';
 
-describe('ExerciseAggregate', () => {
+describe('Execution', () => {
 	describe('Success cases', () => {
 		describe('When using the class', () => {
-			let exerciseAggregate: ExerciseAggregateEntity;
+			let execution: ExecutionEntity;
 			const testeDate = new Date();
 
 			beforeAll(() => {
@@ -15,7 +15,7 @@ describe('ExerciseAggregate', () => {
 				const equipment = new EquipmentEntity(supino.equipment);
 				const muscleGroup = new MuscleGroupEntity(supino.muscleGroup);
 				const { exercise, type, date, trainingDay, observation } = supino;
-				exerciseAggregate = new ExerciseAggregateEntity({
+				execution = new ExecutionEntity({
 					exercise,
 					series,
 					equipment,
@@ -27,15 +27,15 @@ describe('ExerciseAggregate', () => {
 				});
 			});
 			it('should be able of instantiate', () => {
-				expect(exerciseAggregate).toBeDefined();
+				expect(execution).toBeDefined();
 			});
 
 			it('should be able of access exercise infos', () => {
-				expect(exerciseAggregate.exercise).toBe('supino');
+				expect(execution.exercise).toBe('supino');
 			});
 
 			it('should be able of access series', () => {
-				expect(exerciseAggregate.series).toMatchObject([
+				expect(execution.series).toMatchObject([
 					{
 						repetitions: 10,
 						weight: {
@@ -53,27 +53,27 @@ describe('ExerciseAggregate', () => {
 			});
 
 			it('should be able of access equipment', () => {
-				expect(exerciseAggregate.equipment.name).toBe('barra');
+				expect(execution.equipment.name).toBe('barra');
 			});
 
 			it('should be able of access muscleGroup', () => {
-				expect(exerciseAggregate.muscleGroup.name).toBe('peitoral');
+				expect(execution.muscleGroup.name).toBe('peitoral');
 			});
 
 			it('should be able of access type', () => {
-				expect(exerciseAggregate.type).toBe('força');
+				expect(execution.type).toBe('força');
 			});
 
 			it('should be able of access date', () => {
-				expect(exerciseAggregate.date).toBe('06/03/2024');
+				expect(execution.date).toBe('06/03/2024');
 			});
 
 			it('should be able of access trainingDay', () => {
-				expect(exerciseAggregate.trainingDay).toBe(1);
+				expect(execution.trainingDay).toBe(1);
 			});
 
 			it('should be able of access observation', () => {
-				expect(exerciseAggregate.observation).toBe('nenhuma');
+				expect(execution.observation).toBe('nenhuma');
 			});
 		});
 	});
@@ -88,7 +88,7 @@ describe('ExerciseAggregate', () => {
 				expect(
 					() =>
 						// @ts-ignore
-						new ExerciseAggregateEntity({
+						new ExecutionEntity({
 							exercise,
 							series,
 							equipment,
@@ -104,7 +104,7 @@ describe('ExerciseAggregate', () => {
 				expect(
 					() =>
 						// @ts-ignore
-						new ExerciseAggregateEntity({
+						new ExecutionEntity({
 							exercise,
 							series,
 							equipment,
@@ -120,7 +120,7 @@ describe('ExerciseAggregate', () => {
 				expect(
 					() =>
 						// @ts-ignore
-						new ExerciseAggregateEntity({
+						new ExecutionEntity({
 							exercise,
 							series,
 							equipment,
@@ -136,7 +136,7 @@ describe('ExerciseAggregate', () => {
 				expect(
 					() =>
 						// @ts-ignore
-						new ExerciseAggregateEntity({
+						new ExecutionEntity({
 							exercise,
 							series,
 							equipment,

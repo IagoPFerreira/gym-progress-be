@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { Model } from 'mongoose';
-import ExerciseAggregateModel from '../../../src/models/ExerciseAggregate.model';
+import ExecutionModel from '../../../src/models/Execution.model';
 import {
 	atualizadoModelSupino,
 	criadoModelSupino,
@@ -17,7 +17,7 @@ describe('Exercise Aggregate Model', () => {
 		const equipment = new EquipmentEntity(supino.equipment);
 		const muscleGroup = new MuscleGroupEntity(supino.muscleGroup);
 		const { exercise, type, date, trainingDay, observation } = supino;
-		const exerciseAggregate = new ExerciseAggregateModel();
+		const execution = new ExecutionModel();
 
 		beforeAll(async () => {
 			sinon.stub(Model, 'create').resolves([criadoModelSupino]);
@@ -33,7 +33,7 @@ describe('Exercise Aggregate Model', () => {
 
 		describe('When creating a exercise aggregated', () => {
 			it('should return a object with all infos', async () => {
-				const newExercise = await exerciseAggregate.create({
+				const newExercise = await execution.create({
 					exercise,
 					series,
 					equipment,
@@ -49,14 +49,14 @@ describe('Exercise Aggregate Model', () => {
 
 		describe('When getting all exercises aggregated', () => {
 			it('should return a array with all exercises', async () => {
-				const allExercises = await exerciseAggregate.read();
+				const allExercises = await execution.read();
 				expect(allExercises).toMatchObject(todosExerciciosModel);
 			});
 		});
 
 		describe('When getting an exercise aggregated by id', () => {
 			it('should return a object with all infos', async () => {
-				const exercise = await exerciseAggregate.readOne(criadoModelSupino._id);
+				const exercise = await execution.readOne(criadoModelSupino._id);
 				expect(exercise).toMatchObject(criadoModelSupino);
 			});
 		});
@@ -66,40 +66,35 @@ describe('Exercise Aggregate Model', () => {
 				const updateSeries = atualizadoModelSupino.series.map(
 					(serie) => new SerieEntity(serie)
 				);
-				const exerciseAggregated = await exerciseAggregate.update(
-					criadoModelSupino._id,
-					{
-						exercise,
-						series: updateSeries,
-						equipment,
-						muscleGroup,
-						type,
-						date,
-						trainingDay,
-						observation,
-					}
-				);
-				expect(exerciseAggregated).toMatchObject(atualizadoModelSupino);
+				const executiond = await execution.update(criadoModelSupino._id, {
+					exercise,
+					series: updateSeries,
+					equipment,
+					muscleGroup,
+					type,
+					date,
+					trainingDay,
+					observation,
+				});
+				expect(executiond).toMatchObject(atualizadoModelSupino);
 			});
 		});
 
 		describe('When deleting an exercise aggregated by id', () => {
 			it('should return a object with all infos', async () => {
-				const deletedExercise = await exerciseAggregate.delete(
-					criadoModelSupino._id
-				);
+				const deletedExercise = await execution.delete(criadoModelSupino._id);
 				expect(deletedExercise).toMatchObject(criadoModelSupino);
 			});
 		});
 	});
 
 	describe('Failure cases', () => {
-		const exerciseAggregate = new ExerciseAggregateModel();
+		const execution = new ExecutionModel();
 		describe('When creating a exercise aggregated', () => {
 			it('should return a error', async () => {
 				try {
 					// @ts-ignore
-					await exerciseAggregate.create({});
+					await execution.create({});
 				} catch (error: any) {
 					expect(error.message).toBe('InvalidInfo');
 				}
@@ -109,7 +104,7 @@ describe('Exercise Aggregate Model', () => {
 		describe('When there is not any exercise aggregated', () => {
 			it('should return a empty array', async () => {
 				sinon.stub(Model, 'find').resolves([]);
-				const allExercises = await exerciseAggregate.read();
+				const allExercises = await execution.read();
 				expect(allExercises).toMatchObject([]);
 				sinon.restore();
 			});
@@ -118,7 +113,7 @@ describe('Exercise Aggregate Model', () => {
 		describe('When exercise aggregated id is invalid', () => {
 			it('should return a "InvalidMongoId" error', async () => {
 				try {
-					await exerciseAggregate.readOne('6321e977c705e38f871148c');
+					await execution.readOne('6321e977c705e38f871148c');
 				} catch (error: any) {
 					expect(error.message).toBe('InvalidMongoId');
 				}
@@ -129,7 +124,7 @@ describe('Exercise Aggregate Model', () => {
 			it('should return a "InvalidMongoId" error', async () => {
 				try {
 					// @ts-ignore
-					await exerciseAggregate.update('6321e977c705e38f871148c', {});
+					await execution.update('6321e977c705e38f871148c', {});
 				} catch (error: any) {
 					expect(error.message).toBe('InvalidMongoId');
 				}
@@ -139,7 +134,7 @@ describe('Exercise Aggregate Model', () => {
 		describe('When deleting an exercise aggregated by id', () => {
 			it('should return a "InvalidMongoId" error', async () => {
 				try {
-					await exerciseAggregate.delete('6321e977c705e38f871148c');
+					await execution.delete('6321e977c705e38f871148c');
 				} catch (error: any) {
 					expect(error.message).toBe('InvalidMongoId');
 				}
