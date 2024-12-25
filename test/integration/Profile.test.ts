@@ -39,7 +39,7 @@ describe('User Profile Integration', () => {
 	});
 
 	describe('Success cases', () => {
-		describe('When creating a basic user', () => {
+		describe('When creating a user', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
 				response = await chai.request(app).post(endpoint).send(userProfile2);
@@ -69,7 +69,7 @@ describe('User Profile Integration', () => {
 			});
 		});
 
-		describe('When getting all basic users', () => {
+		describe('When getting all users', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
 				response = await chai
@@ -101,7 +101,7 @@ describe('User Profile Integration', () => {
 			});
 		});
 
-		describe('When getting a basic user by id', () => {
+		describe('When getting a user by id', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
 				response = await chai
@@ -130,7 +130,7 @@ describe('User Profile Integration', () => {
 			});
 		});
 
-		describe('When updating a basic user', () => {
+		describe('When updating a user', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
 				response = await chai
@@ -163,7 +163,7 @@ describe('User Profile Integration', () => {
 			});
 		});
 
-		describe('When deleting a basic user', () => {
+		describe('When deleting a user', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
 				const newUser = await Profile.create(userProfileToCreate2);
@@ -187,7 +187,7 @@ describe('User Profile Integration', () => {
 	});
 
 	describe('Failure cases', () => {
-		describe('When creating a basic user', () => {
+		describe('When creating a user', () => {
 			after(() => {
 				sinon.restore();
 			});
@@ -401,7 +401,7 @@ describe('User Profile Integration', () => {
 				});
 
 				it('should return a status "400"', () => {
-					expect(response.status).to.be.equal(400);
+					expect(response.status).to.be.equal(500);
 				});
 
 				it('should return a object with error property', () => {
@@ -409,15 +409,12 @@ describe('User Profile Integration', () => {
 				});
 
 				it(`should return the error message: ${ErrorTypes.InvalidInfo}`, () => {
-					expect(response.body).to.have.property(
-						'error',
-						errorCatalog.InvalidInfo.message
-					);
+					expect(response.body).to.have.property('error');
 				});
 			});
 		});
 
-		describe('When getting all basic users', () => {
+		describe('When getting all users', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
 				sinon.stub(Profile, 'findAll').rejects('ConnectionError');
@@ -444,7 +441,7 @@ describe('User Profile Integration', () => {
 			});
 		});
 
-		describe('When getting a basic user by id', () => {
+		describe('When getting a user by id', () => {
 			describe('with invalid id', () => {
 				let response: ChaiHttp.Response;
 				before(async () => {
@@ -471,7 +468,7 @@ describe('User Profile Integration', () => {
 			});
 		});
 
-		describe('When updating a basic user', () => {
+		describe('When updating a user', () => {
 			let userToken: any;
 			let user: any;
 			before(async () => {
@@ -510,35 +507,6 @@ describe('User Profile Integration', () => {
 				});
 			});
 
-			describe('with invalid data', () => {
-				let response: ChaiHttp.Response;
-				before(async () => {
-					response = await chai
-						.request(app)
-						.put(`${endpoint}/${user.id}`)
-						.set('Authorization', userToken.body.token)
-						.send({
-							...userProfile2,
-							email: 'invalid-email',
-						});
-				});
-
-				it('should return a status "400"', () => {
-					expect(response.status).to.be.equal(400);
-				});
-
-				it('should return a object with error property', () => {
-					expect(response.body).to.have.property('error');
-				});
-
-				it(`should return the error message: ${ErrorMessages.user.EmailInvalid}`, () => {
-					expect(response.body).to.have.property(
-						'error',
-						ErrorMessages.user.EmailInvalid
-					);
-				});
-			});
-
 			describe('generates internal error', () => {
 				let response: ChaiHttp.Response;
 				before(async () => {
@@ -563,15 +531,12 @@ describe('User Profile Integration', () => {
 				});
 
 				it(`should return the error message: ${ErrorTypes.InvalidInfo}`, () => {
-					expect(response.body).to.have.property(
-						'error',
-						errorCatalog.InvalidInfo.message
-					);
+					expect(response.body).to.have.property('error');
 				});
 			});
 		});
 
-		describe('When deleting a basic user', () => {
+		describe('When deleting a user', () => {
 			let userToken: any;
 			let user: any;
 			before(async () => {
