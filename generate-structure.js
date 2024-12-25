@@ -120,11 +120,11 @@ ${name}.init(
 }
 
 function initializerTemplate(name) {
-	return `import ${name}Controller from '../controllers/${name}.controller';
-import ${name}Entity from '../entities/${name}.entity';
-import ${name}Service from '../services/${name}.service';
-import ${name}Repository from '../repositories/${name}.repository';
-import ${name} from '../models/${name}.model';
+	return `import { ${name}Controller } from '../controllers';
+import { ${name}Entity } from '../entities';
+import { ${name}Service } from '../services';
+import { ${name}Repository } from '../repositories';
+import { ${name} } from '../models';
 
 export const ${baseName}Repository = new ${name}Repository(${name});
 export const ${baseName}Service = new ${name}Service(

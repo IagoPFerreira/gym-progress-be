@@ -20,7 +20,7 @@ class Service implements IService {
 		const created = await this._repository.create(obj, { transaction });
 		if (!created) throw new Error(ErrorTypes.InfoAlreadyExists);
 
-		return created;
+		return this._serializer(created);
 	}
 
 	public async read(): Promise<any[]> {
@@ -46,17 +46,19 @@ class Service implements IService {
 
 		if (!founded) throw new Error(ErrorTypes.ObjectNotFound);
 
-		return founded;
+		return this._serializer(founded);
 	}
 
 	public async readAllBy(where: any): Promise<any> {
 		const founded = await this._repository.readAllBy(where);
 
-		return founded;
+		// @ts-ignore
+		const cleanedFounded = founded.map((each) => this._serializer(each));
+
+		return cleanedFounded;
 	}
 
 	public async update(id: string, obj: any, events?: IEvents): Promise<any> {
-		new this._entity(obj, true);
 		const { transaction } = events ?? {};
 
 		const updated = await this._repository.update(id, obj, {
@@ -65,7 +67,7 @@ class Service implements IService {
 
 		if (!updated) throw new Error(ErrorTypes.ObjectNotFound);
 
-		return updated;
+		return this._serializer(updated);
 	}
 
 	public async delete(id: string, events?: IEvents): Promise<boolean> {
