@@ -8,6 +8,7 @@ import {
 import { ErrorTypes } from '../errors/catalog';
 import { validateId } from '../validators';
 import { IRepository } from '../interfaces/Generics.interface';
+import InformationError from '../errors/Information.error';
 
 class Repository<ModelType extends Model> implements IRepository {
 	protected _model: ModelCtor<ModelType>;
@@ -20,8 +21,8 @@ class Repository<ModelType extends Model> implements IRepository {
 			const exists = await this._model.findOne({ where: data });
 
 			return exists ? false : await this._model.create(data, options);
-		} catch (error) {
-			throw new Error(ErrorTypes.InvalidInfo);
+		} catch (error: Error | any) {
+			throw new InformationError(error.message);
 		}
 	}
 
@@ -93,8 +94,8 @@ class Repository<ModelType extends Model> implements IRepository {
 			});
 
 			return updated;
-		} catch (error) {
-			throw new Error(ErrorTypes.InvalidInfo);
+		} catch (error: Error | any) {
+			throw new InformationError(error.message);
 		}
 	}
 
