@@ -17,7 +17,7 @@ export default class LoginService {
 
 		await compareHash(obj.password, user.password);
 		// @ts-ignore
-		const { password, createdAt, updatedAt, ...rest } = user.dataValues;
+		const { password, createdAt, updatedAt, ...rest } = user;
 
 		const token = await generateToken(rest);
 		return {
