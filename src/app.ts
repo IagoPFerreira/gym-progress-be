@@ -1,15 +1,14 @@
 import express from 'express';
 import 'express-async-errors';
-import executionRouter from './routes/execution.router';
-import exerciseRouter from './routes/exercise.router';
+import * as routers from './routes';
+
 import ErrorHandler from './middlewares/error.middleware';
 
 const app = express();
 
 app.use(express.json());
 
-app.use(executionRouter);
-app.use(exerciseRouter);
+Object.values(routers).forEach((router) => app.use(router));
 
 app.use(ErrorHandler.handle);
 

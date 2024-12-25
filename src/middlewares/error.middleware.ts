@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { ErrorTypes, errorCatalog } from '../errors/catalog';
-import InformationError from '../errors/InformationError';
+import InformationError from '../errors/Information.error';
 
 class ErrorHandler {
 	public static handle(
@@ -9,6 +9,8 @@ class ErrorHandler {
 		res: Response,
 		_next: NextFunction
 	) {
+		console.log(error);
+
 		if (error instanceof InformationError) {
 			return res.status(error.status).json({ error: error.message });
 		}
