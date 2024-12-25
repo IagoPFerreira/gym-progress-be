@@ -1,7 +1,7 @@
-import { profileController } from '../../initializers/Profile.initializer';
 import { validateToken } from '../../middlewares/validateToken.middleware';
 import { adminRole, moderatorRole } from '../../helpers/roles';
 import { router } from '../Router';
+import { profileController } from '../../initializers/user/Profile.initializer';
 
 router
 	.route('/profile')
