@@ -9,8 +9,6 @@ class ErrorHandler {
 		res: Response,
 		_next: NextFunction
 	) {
-		console.log(error);
-
 		if (error instanceof InformationError) {
 			return res.status(error.status).json({ error: error.message });
 		}
