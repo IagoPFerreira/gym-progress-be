@@ -14,7 +14,7 @@ export default class ProfileRepository extends Repository<Profile> {
 
 			return exists ? false : await this._model.create(data, options);
 		} catch (error: Error | any) {
-			throw new InformationError(error.message);
+			throw new Error(error.message);
 		}
 	}
 }
