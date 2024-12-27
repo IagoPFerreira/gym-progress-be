@@ -1,3 +1,4 @@
+import AccessoryEntity from './Accessory.entity';
 import MachineEntity from './Machine.entity';
 
-export { MachineEntity };
+export { AccessoryEntity, MachineEntity };
