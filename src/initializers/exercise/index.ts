@@ -1,3 +1,4 @@
+import * as Accessory from './Accessory.initializer';
 import * as Machine from './Machine.initializer';
 
-export { Machine };
+export { Accessory, Machine };
