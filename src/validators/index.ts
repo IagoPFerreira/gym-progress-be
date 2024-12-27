@@ -1,3 +1,4 @@
+export * from './data.validate';
 export * from './date.validate';
 export * from './email.validate';
 export * from './id.validate';
