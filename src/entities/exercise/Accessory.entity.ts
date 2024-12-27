@@ -1,5 +1,5 @@
 import { ErrorMessages } from '../../errors/catalog';
-import { IMachine } from '../../interfaces';
+import { IAccessory } from '../../interfaces';
 import { validateData } from '../../validators';
 
 const {
@@ -7,7 +7,7 @@ const {
 } = ErrorMessages;
 
 export default class AccessoryEntity {
-	constructor({ name }: IMachine) {
+	constructor({ name }: IAccessory) {
 		validateData(name, 3, NameRequired, NameLength);
 	}
 }
