@@ -1,3 +1,4 @@
+import AccessoryController from './Accessory.controller';
 import MachineController from './Machine.controller';
 
-export { MachineController };
+export { AccessoryController, MachineController };
