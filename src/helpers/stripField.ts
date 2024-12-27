@@ -11,8 +11,6 @@ export function stripFields(
 	unwantedFields: string[]
 ): Array<any> | {} {
 	const removeFields = (obj: any) => {
-		console.log(obj);
-
 		const filteredData = obj.dataValues ? { ...obj.dataValues } : { ...obj };
 		unwantedFields.forEach((field) => {
 			delete filteredData[field];

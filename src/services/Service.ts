@@ -60,6 +60,7 @@ class Service implements IService {
 
 	public async update(id: string, obj: any, events?: IEvents): Promise<any> {
 		const { transaction } = events ?? {};
+		new this._entity(obj);
 
 		const updated = await this._repository.update(id, obj, {
 			transaction,
