@@ -1,3 +1,4 @@
+import Accessory from './Accessory.model';
 import Machine from './Machine.model';
 
-export { Machine };
+export { Accessory, Machine };
