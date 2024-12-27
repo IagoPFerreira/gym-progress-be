@@ -1,3 +1,7 @@
+export type AccessoryToCreate = {
+	name: string;
+};
+
 export type MachineToCreate = {
 	name: string;
 };

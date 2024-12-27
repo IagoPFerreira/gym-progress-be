@@ -1,3 +1,5 @@
+import accessoryRouter from './Accessory.router';
+
 import machineRouter from './Machine.router';
 
-export { machineRouter };
+export { accessoryRouter, machineRouter };

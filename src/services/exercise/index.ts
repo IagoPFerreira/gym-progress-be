@@ -1,3 +1,4 @@
+import AccessoryService from './Accessory.service';
 import MachineService from './Machine.service';
 
-export { MachineService };
+export { AccessoryService, MachineService };
