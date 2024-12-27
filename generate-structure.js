@@ -69,16 +69,16 @@ if (!baseName) {
 generateStructure(baseName);
 
 function serviceTemplate(name) {
-	return `import Service from './Service';\n\nexport default class ${name}Service extends Service {}`;
+	return `import Service from '../Service';\n\nexport default class ${name}Service extends Service {}`;
 }
 
 function repositoryTemplate(name) {
-	return `import Repository from './Repository';
+	return `import Repository from '../Repository';
 import ${name} from '../models/${name}.model';\n\nexport default class ${name}Repository extends Repository<${name}> {}`;
 }
 
 function controllerTemplate(name) {
-	return `import Controller from './Controller';\n\nexport default class ${name}Controller extends Controller {}`;
+	return `import Controller from '../Controller';\n\nexport default class ${name}Controller extends Controller {}`;
 }
 
 function entityTemplate(name) {
@@ -89,10 +89,12 @@ function entityTemplate(name) {
 
 function modelTemplate(name) {
 	return `import { Model, DataTypes } from 'sequelize';
-import db from '../index';
+import db from '../../database';
 
 export default class ${name} extends Model {
 	id!: number;
+	createdAt!: Date;
+	updatedAt!: Date;
 }
 
 ${name}.init(
@@ -113,7 +115,7 @@ ${name}.init(
 	},
 	{
 		sequelize: db,
-		tableName: '${name}',
+		tableName: '${name}s',
 		underscored: true,
 	}
 );`;
@@ -135,18 +137,16 @@ export const ${baseName}Controller = new ${name}Controller(${baseName}Service);`
 }
 
 function routeTemplate(name) {
-	return `import { Router } from 'express';
-import { ${baseName}Controller } from '../initializers/${name}.initializer';
-import { validateToken } from '../middlewares/validateToken.middleware';
-import { adminRole, managementRole} from '../helpers/roles';
-
-const router = Router();
+	return `import { router } from '../Router';
+import { ${baseName}Controller } from '../../initializers/${name}.initializer';
+import { validateToken } from '../../middlewares/validateToken.middleware';
+import { adminRole, moderatorRole } from '../../helpers/roles';
 
 router
 	.route('/${baseName}')
 	.get(
 		(req, res, next) =>
-			validateToken(req, res, next, [adminRole, managementRole]),
+			validateToken(req, res, next, [adminRole, moderatorRole]),
 		(req, res) => ${baseName}Controller.read(req, res)
 	)
 	.post((req, res) => ${baseName}Controller.create(req, res));
@@ -155,19 +155,19 @@ router
 	.route('/${baseName}/:id')
 	.get(
 		(req, res, next) =>
-			validateToken(req, res, next, [adminRole, managementRole]),
+			validateToken(req, res, next, [adminRole, moderatorRole]),
 		(req, res) =>
-			${baseName}Controller.readOne(req, res, [adminRole,	managementRole])
+			${baseName}Controller.readOne(req, res, [adminRole,	moderatorRole])
 	)
 	.put(
 		(req, res, next) => validateToken(req, res, next, [adminRole]),
 		(req, res) =>
-			${baseName}Controller.update(req, res, [adminRole, managementRole])
+			${baseName}Controller.update(req, res, [adminRole, moderatorRole])
 	)
 	.delete(
 		(req, res, next) => validateToken(req, res, next, [adminRole]),
 		(req, res) =>
-			${baseName}Controller.delete(req, res, [adminRole, managementRole])
+			${baseName}Controller.delete(req, res, [adminRole, moderatorRole])
 	);
 
 export default router;
