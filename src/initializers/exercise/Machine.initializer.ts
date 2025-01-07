@@ -5,10 +5,10 @@ import { MachineRepository } from '../../repositories';
 import { MachineService } from '../../services';
 import { machineSerializer } from '../../serializers/exercise';
 
-export const machineRepository = new MachineRepository(Machine);
-export const machineService = new MachineService(
-	machineRepository,
+export const repository = new MachineRepository(Machine);
+export const service = new MachineService(
+	repository,
 	MachineEntity,
 	machineSerializer
 );
-export const machineController = new MachineController(machineService);
+export const controller = new MachineController(service);

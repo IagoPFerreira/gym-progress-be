@@ -5,10 +5,10 @@ import { AccessoryRepository } from '../../repositories';
 import { Accessory } from '../../models';
 import { accessorySerializer } from '../../serializers/exercise';
 
-export const accessoryRepository = new AccessoryRepository(Accessory);
-export const accessoryService = new AccessoryService(
-	accessoryRepository,
+export const repository = new AccessoryRepository(Accessory);
+export const service = new AccessoryService(
+	repository,
 	AccessoryEntity,
 	accessorySerializer
 );
-export const accessoryController = new AccessoryController(accessoryService);
+export const controller = new AccessoryController(service);
