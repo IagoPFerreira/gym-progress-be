@@ -9,6 +9,7 @@ const {
 	initializerTemplate,
 	routeTemplate,
 	indexTemplate,
+	indexInitializerTemplate,
 } = require('./templates');
 
 // Função para capitalizar a primeira letra
@@ -41,7 +42,7 @@ function generateStructure({ baseName, layers, context, directory }) {
 		controller: controllerTemplate(capitalized),
 		entity: entityTemplate(capitalized),
 		model: modelTemplate(capitalized),
-		initializer: initializerTemplate(baseName, capitalized),
+		initializer: initializerTemplate(capitalized),
 		router: routeTemplate(baseName, capitalized),
 	};
 
@@ -53,7 +54,9 @@ function generateStructure({ baseName, layers, context, directory }) {
 			createFile(
 				directories[layer],
 				'index.ts',
-				indexTemplate(capitalized, layer, capitalize(layer))
+				layer === 'initializer'
+					? indexInitializerTemplate(capitalized)
+					: indexTemplate(capitalized, layer, capitalize(layer))
 			);
 		}
 	});
