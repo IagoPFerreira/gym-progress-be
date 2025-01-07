@@ -1,4 +1,4 @@
 import Repository from '../Repository';
-import Accessory from '../../models/exercise/Accessory.model';
+import { Accessory } from '../../models';
 
 export default class AccessoryRepository extends Repository<Accessory> {}

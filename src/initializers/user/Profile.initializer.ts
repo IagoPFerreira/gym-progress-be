@@ -5,10 +5,10 @@ import { ProfileRepository } from '../../repositories';
 import { Profile } from '../../models';
 import { profileSerializer } from '../../serializers';
 
-export const profileRepository = new ProfileRepository(Profile);
-export const profileService = new ProfileService(
-	profileRepository,
+export const repository = new ProfileRepository(Profile);
+export const service = new ProfileService(
+	repository,
 	ProfileEntity,
 	profileSerializer
 );
-export const profileController = new ProfileController(profileService);
+export const controller = new ProfileController(service);

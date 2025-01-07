@@ -1,16 +1,16 @@
 import { router } from '../Router';
 import { validateToken } from '../../middlewares/validateToken.middleware';
 import { adminRole, moderatorRole } from '../../helpers/roles';
-import { machineController } from '../../initializers/exercise/Machine.initializer';
+import { Machine } from '../../initializers';
 
 router
 	.route('/machine')
 	.get(
 		(req, res, next) =>
 			validateToken(req, res, next, [adminRole, moderatorRole]),
-		(req, res) => machineController.read(req, res)
+		(req, res) => Machine.controller.read(req, res)
 	)
-	.post((req, res) => machineController.create(req, res));
+	.post((req, res) => Machine.controller.create(req, res));
 
 router
 	.route('/machine/:id')
@@ -18,15 +18,17 @@ router
 		(req, res, next) =>
 			validateToken(req, res, next, [adminRole, moderatorRole]),
 		(req, res) =>
-			machineController.readOne(req, res, [adminRole, moderatorRole])
+			Machine.controller.readOne(req, res, [adminRole, moderatorRole])
 	)
 	.put(
 		(req, res, next) => validateToken(req, res, next, [adminRole]),
-		(req, res) => machineController.update(req, res, [adminRole, moderatorRole])
+		(req, res) =>
+			Machine.controller.update(req, res, [adminRole, moderatorRole])
 	)
 	.delete(
 		(req, res, next) => validateToken(req, res, next, [adminRole]),
-		(req, res) => machineController.delete(req, res, [adminRole, moderatorRole])
+		(req, res) =>
+			Machine.controller.delete(req, res, [adminRole, moderatorRole])
 	);
 
 export default router;

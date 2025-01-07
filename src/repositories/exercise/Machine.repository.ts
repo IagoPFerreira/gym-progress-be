@@ -1,4 +1,4 @@
 import Repository from '../Repository';
-import Machine from '../../models/exercise/Machine.model';
+import { Machine } from '../../models';
 
 export default class MachineRepository extends Repository<Machine> {}

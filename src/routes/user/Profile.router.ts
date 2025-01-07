@@ -1,23 +1,23 @@
 import { validateToken } from '../../middlewares/validateToken.middleware';
 import { adminRole, moderatorRole } from '../../helpers/roles';
 import { router } from '../Router';
-import { profileController } from '../../initializers/user/Profile.initializer';
+import { Profile } from '../../initializers';
 
 router
 	.route('/profile')
-	.get((req, res) => profileController.read(req, res))
-	.post((req, res) => profileController.create(req, res));
+	.get((req, res) => Profile.controller.read(req, res))
+	.post((req, res) => Profile.controller.create(req, res));
 
 router
 	.route('/profile/:id')
 	.get((req, res) =>
-		profileController.readOne(req, res, [adminRole, moderatorRole])
+		Profile.controller.readOne(req, res, [adminRole, moderatorRole])
 	)
 	.put((req, res) =>
-		profileController.update(req, res, [adminRole, moderatorRole])
+		Profile.controller.update(req, res, [adminRole, moderatorRole])
 	)
 	.delete((req, res) =>
-		profileController.delete(req, res, [adminRole, moderatorRole])
+		Profile.controller.delete(req, res, [adminRole, moderatorRole])
 	);
 
 export default router;
