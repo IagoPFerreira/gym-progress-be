@@ -3,10 +3,12 @@ import { MachineController } from '../../controllers';
 import { MachineEntity } from '../../entities';
 import { MachineRepository } from '../../repositories';
 import { MachineService } from '../../services';
+import { machineSerializer } from '../../serializers/exercise';
 
 export const machineRepository = new MachineRepository(Machine);
 export const machineService = new MachineService(
 	machineRepository,
-	MachineEntity
+	MachineEntity,
+	machineSerializer
 );
 export const machineController = new MachineController(machineService);
