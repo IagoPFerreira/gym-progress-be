@@ -4,7 +4,7 @@ function serviceTemplate(name) {
 
 function repositoryTemplate(name) {
 	return `import Repository from '../Repository';
-import ${name} from '../models/${name}.model';\n\nexport default class ${name}Repository extends Repository<${name}> {}`;
+import { ${name} } from '../../models';\n\nexport default class ${name}Repository extends Repository<${name}> {}`;
 }
 
 function controllerTemplate(name) {
@@ -51,24 +51,24 @@ ${name}.init(
 );`;
 }
 
-function initializerTemplate(name, capitalized) {
+function initializerTemplate(capitalized) {
 	return `import { ${capitalized}Controller } from '../../controllers';
 import { ${capitalized}Entity } from '../../entities';
 import { ${capitalized}Service } from '../../services';
 import { ${capitalized}Repository } from '../../repositories';
 import { ${capitalized} } from '../../models';
 
-export const ${name}Repository = new ${capitalized}Repository(${capitalized});
-export const ${name}Service = new ${capitalized}Service(
-	${name}Repository,
+export const repository = new ${capitalized}Repository(${capitalized});
+export const service = new ${capitalized}Service(
+	repository,
 	${capitalized}Entity
 );
-export const ${name}Controller = new ${capitalized}Controller(${name}Service);`;
+export const controller = new ${capitalized}Controller(service);`;
 }
 
 function routeTemplate(name, capitalized) {
 	return `import { router } from '../Router';
-import { ${name}Controller } from '../../initializers/${capitalized}.initializer';
+import { ${capitalized} } from '../../initializers';
 import { validateToken } from '../../middlewares/validateToken.middleware';
 import { adminRole, moderatorRole } from '../../helpers/roles';
 
@@ -77,9 +77,9 @@ router
 	.get(
 		(req, res, next) =>
 			validateToken(req, res, next, [adminRole, moderatorRole]),
-		(req, res) => ${name}Controller.read(req, res)
+		(req, res) => ${capitalized}.controller.read(req, res)
 	)
-	.post((req, res) => ${name}Controller.create(req, res));
+	.post((req, res) => ${capitalized}.controller.create(req, res));
 
 router
 	.route('/${name}/:id')
@@ -87,17 +87,17 @@ router
 		(req, res, next) =>
 			validateToken(req, res, next, [adminRole, moderatorRole]),
 		(req, res) =>
-			${name}Controller.readOne(req, res, [adminRole,	moderatorRole])
+			${capitalized}.controller.readOne(req, res, [adminRole,	moderatorRole])
 	)
 	.put(
 		(req, res, next) => validateToken(req, res, next, [adminRole]),
 		(req, res) =>
-			${name}Controller.update(req, res, [adminRole, moderatorRole])
+			${capitalized}.controller.update(req, res, [adminRole, moderatorRole])
 	)
 	.delete(
 		(req, res, next) => validateToken(req, res, next, [adminRole]),
 		(req, res) =>
-			${name}Controller.delete(req, res, [adminRole, moderatorRole])
+			${capitalized}.controller.delete(req, res, [adminRole, moderatorRole])
 	);
 
 export default router;
@@ -110,6 +110,12 @@ function indexTemplate(capitalized, layer, capitalizedLayer) {
 export { ${capitalized}${capitalizedLayer} };`;
 }
 
+function indexInitializerTemplate(capitalized) {
+	return `import * as ${capitalized} from './${capitalized}.initializer'
+
+export { ${capitalized} };`;
+}
+
 module.exports = {
 	serviceTemplate,
 	repositoryTemplate,
@@ -119,4 +125,5 @@ module.exports = {
 	initializerTemplate,
 	routeTemplate,
 	indexTemplate,
+	indexInitializerTemplate,
 };
