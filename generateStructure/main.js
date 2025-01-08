@@ -23,6 +23,12 @@ const argv = yargs(hideBin(process.argv))
 		],
 		describe: 'Camadas a serem criadas',
 	})
+	.option('exclude-layer', {
+		alias: 'e',
+		type: 'array',
+		default: [],
+		describe: 'Camadas a serem ignoradas',
+	})
 	.option('test', {
 		alias: 't',
 		type: 'boolean',
@@ -45,9 +51,13 @@ const argv = yargs(hideBin(process.argv))
 	.help()
 	.alias('help', 'h').argv;
 
+const layers = argv.layers.filter(
+	(layer) => !argv.excludeLayer.includes(layer)
+);
+
 generateStructure({
 	baseName: argv.name,
-	layers: argv.layers,
+	layers: layers,
 	context: argv.context,
 	directory: argv.directory,
 });
