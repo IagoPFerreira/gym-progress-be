@@ -34,6 +34,9 @@ export const errorCatalog: ErrorCatalog = {
 };
 
 export const ErrorMessages = {
+	exercises: {
+		InvalidMuscleName: 'Invalid muscle group name',
+	},
 	id: {
 		IdInvalid: 'Id must be a number greater than 0',
 		IdRequired: 'Id is required',
