@@ -6,23 +6,72 @@ module.exports = {
 			'Muscles',
 			[
 				{
-					name: 'Peitoral',
+					name: 'Bíceps braquial',
 					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 				},
 				{
-					name: 'Tríceps',
-					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
-					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
-				},
-
-				{
-					name: 'Bíceps',
+					name: 'Bíceps femoral',
 					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 				},
 				{
-					name: 'Dorsal',
+					name: 'Braquial',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Deltoide',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Eretor da espinha',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Gastrocnêmio',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Glúteo máximo',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Glúteo médio',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Glúteo mínimo',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Latíssimo do dorso',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Oblíquo externo',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Oblíquo interno',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Peitoral maior',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Peitoral menor',
 					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 				},
@@ -32,17 +81,37 @@ module.exports = {
 					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 				},
 				{
-					name: 'Glúteos',
+					name: 'Reto abdominal',
 					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 				},
 				{
-					name: 'Panturrilha',
+					name: 'Rombóides',
 					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 				},
 				{
-					name: 'Deltoide',
+					name: 'Semimembranoso',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Semitendíneo',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Sóleo',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Trapézio',
+					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+				},
+				{
+					name: 'Transverso do abdômen',
 					created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 					updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
 				},
