@@ -1,4 +1,4 @@
-import { ProfileController } from '../../controllers';
+import { Controller } from '../../controllers';
 import { ProfileEntity } from '../../entities';
 import { ProfileService } from '../../services';
 import { ProfileRepository } from '../../repositories';
@@ -11,4 +11,4 @@ export const service = new ProfileService(
 	ProfileEntity,
 	profileSerializer
 );
-export const controller = new ProfileController(service);
+export const controller = new Controller(service);

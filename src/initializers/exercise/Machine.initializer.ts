@@ -1,14 +1,14 @@
 import { Machine } from '../../models';
-import { MachineController } from '../../controllers';
+import { Controller } from '../../controllers';
 import { MachineEntity } from '../../entities';
 import { MachineRepository } from '../../repositories';
-import { MachineService } from '../../services';
+import { Service } from '../../services';
 import { machineSerializer } from '../../serializers/exercise';
 
 export const repository = new MachineRepository(Machine);
-export const service = new MachineService(
+export const service = new Service(
 	repository,
 	MachineEntity,
 	machineSerializer
 );
-export const controller = new MachineController(service);
+export const controller = new Controller(service);
