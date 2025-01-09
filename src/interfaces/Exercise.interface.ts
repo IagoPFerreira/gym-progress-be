@@ -5,3 +5,7 @@ export interface IAccessory {
 export interface IMachine {
 	name: string;
 }
+
+export interface IMuscle {
+	name: string;
+}
