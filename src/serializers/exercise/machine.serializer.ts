@@ -1,7 +1,7 @@
 import { stripFields } from '../../helpers';
-import { IMachineReturn } from '../../interfaces';
+import { IExerciseRelatedReturn } from '../../interfaces';
 
-export function machineSerializer(params: IMachineReturn) {
+export function machineSerializer(params: IExerciseRelatedReturn) {
 	const response = stripFields(params, ['createdAt', 'updatedAt']);
 
 	return response;

@@ -1,7 +1,7 @@
 import { stripFields } from '../../helpers';
-import { IAccessoryReturn } from '../../interfaces';
+import { IExerciseRelatedReturn } from '../../interfaces';
 
-export function accessorySerializer(params: IAccessoryReturn) {
+export function accessorySerializer(params: IExerciseRelatedReturn) {
 	const response = stripFields(params, ['createdAt', 'updatedAt']);
 
 	return response;
