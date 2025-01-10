@@ -20,9 +20,8 @@ import {
 import { Muscle } from '../../src/models';
 
 const {
-	exercises: { InvalidMuscleName },
 	name: { NameLength, NameRequired },
-	id: { IdInvalid, IdRequired },
+	id: { IdInvalid },
 } = ErrorMessages;
 
 chai.use(chaiHttp);
@@ -218,8 +217,8 @@ describe('Muscle Integration', () => {
 					expect(response.body).to.have.property('error');
 				});
 
-				it(`should return the error message: ${InvalidMuscleName}`, () => {
-					expect(response.body).to.have.property('error', InvalidMuscleName);
+				it(`should return the error message: ${NameRequired}`, () => {
+					expect(response.body).to.have.property('error', NameRequired);
 				});
 			});
 
