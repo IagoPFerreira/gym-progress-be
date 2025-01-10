@@ -2,11 +2,11 @@ import { ErrorTypes } from '../../errors/catalog';
 import { generateToken } from '../../helpers/generateToken';
 import { compareHash } from '../../helpers/hashPassword';
 import { ILogin } from '../../interfaces/Login.interface';
-import { LoginRepository } from '../../repositories';
+import { Repository } from '../../repositories';
 import { validateEmail, validatePassword } from '../../validators';
 
 export default class LoginService {
-	constructor(protected repository: LoginRepository) {}
+	constructor(protected repository: Repository) {}
 
 	public async login(obj: ILogin): Promise<{}> {
 		validateEmail(obj.email);
