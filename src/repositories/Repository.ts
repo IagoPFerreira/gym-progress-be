@@ -10,9 +10,9 @@ import { validateId } from '../validators';
 import { IRepository } from '../interfaces/Generics.interface';
 import InformationError from '../errors/Information.error';
 
-class Repository<ModelType extends Model> implements IRepository {
-	protected _model: ModelCtor<ModelType>;
-	constructor(model: ModelCtor<ModelType>) {
+class Repository implements IRepository {
+	protected _model: ModelCtor<Model>;
+	constructor(model: ModelCtor<Model>) {
 		this._model = model;
 	}
 

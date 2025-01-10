@@ -3,7 +3,7 @@ import { Profile } from '../../models';
 import Repository from '../Repository';
 import { hashPassword } from '../../helpers';
 
-export default class ProfileRepository extends Repository<Profile> {
+export default class ProfileRepository extends Repository {
 	async create(data: any, options?: CreateOptions): Promise<any | boolean> {
 		data.role = 'usuário';
 		data.password = await hashPassword(data.password);

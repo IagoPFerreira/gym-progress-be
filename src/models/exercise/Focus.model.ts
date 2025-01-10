@@ -30,7 +30,7 @@ Focus.init(
 	},
 	{
 		sequelize: db,
-		tableName: 'Focus',
+		tableName: 'Focuses',
 		underscored: true,
 	}
 );
