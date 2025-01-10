@@ -1,19 +1,18 @@
-import { Accessory, Machine, Muscle, Profile } from '../../src/models';
-import {
-	AccessoryToCreate,
-	MachineToCreate,
-	MuscleToCreate,
-	ProfileToCreate,
-} from './dataCreate.types';
+import { Accessory, Focus, Machine, Muscle, Profile } from '../../src/models';
+import { ExerciseRelatedToCreate, ProfileToCreate } from './dataCreate.types';
 
-export const createAccessory = async (accessoryToCreate: AccessoryToCreate) =>
-	Accessory.create(accessoryToCreate);
+export const createAccessory = async (
+	accessoryToCreate: ExerciseRelatedToCreate
+) => Accessory.create(accessoryToCreate);
 
-export const createMachine = async (analysisFilesToCreate: MachineToCreate) =>
-	Machine.create(analysisFilesToCreate);
+export const createFocus = async (focusToCreate: ExerciseRelatedToCreate) =>
+	Focus.create(focusToCreate);
 
-export const createMuscle = async (analysisFilesToCreate: MuscleToCreate) =>
-	Muscle.create(analysisFilesToCreate);
+export const createMachine = async (machineToCreate: ExerciseRelatedToCreate) =>
+	Machine.create(machineToCreate);
+
+export const createMuscle = async (muscleToCreate: ExerciseRelatedToCreate) =>
+	Muscle.create(muscleToCreate);
 
 export const createProfile = async (profileToCreate: ProfileToCreate) =>
 	Profile.create(profileToCreate);

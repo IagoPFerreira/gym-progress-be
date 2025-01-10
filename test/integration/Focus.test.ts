@@ -10,14 +10,9 @@ import {
 	errorCatalog,
 } from '../../src/errors/catalog';
 import sinon from 'sinon';
-import { createMuscle, createProfile } from '../fixtures/dataCreate';
-import {
-	muscle1,
-	expectedMuscleUpdated,
-	muscle2,
-	muscle3,
-} from '../dummies/muscle';
-import { Muscle } from '../../src/models';
+import { createFocus, createProfile } from '../fixtures/dataCreate';
+import { focus1, expectedFocusUpdated, focus2, focus3 } from '../dummies/focus';
+import { Focus } from '../../src/models';
 
 const {
 	name: { NameLength, NameRequired },
@@ -26,9 +21,9 @@ const {
 
 chai.use(chaiHttp);
 
-const endpoint = '/muscle';
+const endpoint = '/focus';
 
-describe('Muscle Integration', () => {
+describe('Focus Integration', () => {
 	let userToken: any;
 	let adminToken: any;
 	before(async () => {
@@ -45,18 +40,18 @@ describe('Muscle Integration', () => {
 	});
 
 	describe('Success cases', () => {
-		describe('When creating an muscle', () => {
+		describe('When creating an focus', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
 				response = await chai
 					.request(app)
 					.post(`${endpoint}`)
 					.set('Authorization', adminToken.body.token)
-					.send(muscle1);
+					.send(focus1);
 			});
 
 			after(async () => {
-				Muscle.destroy({ where: { id: response.body.id } });
+				Focus.destroy({ where: { id: response.body.id } });
 			});
 
 			it('should return a status "201"', () => {
@@ -70,17 +65,17 @@ describe('Muscle Integration', () => {
 			it('should return a object with all properties', () => {
 				const { createdAt, updatedAt, ...rest } = response.body;
 				expect(rest).to.be.deep.equal({
-					...muscle1,
+					...focus1,
 					id: 1,
 				});
 			});
 		});
 
-		describe('When getting all muscle', () => {
+		describe('When getting all focus', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
-				await createMuscle(muscle1);
-				await createMuscle(muscle2);
+				await createFocus(focus1);
+				await createFocus(focus2);
 
 				response = await chai
 					.request(app)
@@ -89,7 +84,7 @@ describe('Muscle Integration', () => {
 			});
 
 			after(async () => {
-				await Muscle.destroy({ where: {} });
+				await Focus.destroy({ where: {} });
 			});
 
 			it('should return a status "200"', () => {
@@ -101,29 +96,29 @@ describe('Muscle Integration', () => {
 				expect(response.body).to.have.lengthOf(2);
 			});
 
-			it('should return an array with all infos from first muscle', async () => {
+			it('should return an array with all infos from first focus', async () => {
 				const { createdAt, updatedAt, ...rest } = response.body[0];
 				expect(rest).to.be.deep.equal({
-					...muscle1,
+					...focus1,
 					id: 2,
 				});
 			});
 		});
 
-		describe('When getting an muscle by id', () => {
+		describe('When getting an focus by id', () => {
 			let response: ChaiHttp.Response;
 
 			before(async () => {
-				const muscle = await createMuscle(muscle1);
+				const focus = await createFocus(focus1);
 
 				response = await chai
 					.request(app)
-					.get(`${endpoint}/${muscle.id}`)
+					.get(`${endpoint}/${focus.id}`)
 					.set('Authorization', adminToken.body.token);
 			});
 
 			after(async () => {
-				await Muscle.destroy({ where: {} });
+				await Focus.destroy({ where: {} });
 			});
 
 			it('should return a status "200"', () => {
@@ -137,26 +132,26 @@ describe('Muscle Integration', () => {
 			it('should return a object with all properties', () => {
 				const { createdAt, updatedAt, ...rest } = response.body;
 				expect(rest).to.be.deep.equal({
-					...muscle1,
+					...focus1,
 					id: 4,
 				});
 			});
 		});
 
-		describe('When updating an muscle', () => {
+		describe('When updating an focus', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
-				const muscle = await Muscle.create(muscle3);
+				const focus = await Focus.create(focus3);
 
 				response = await chai
 					.request(app)
-					.put(`${endpoint}/${muscle.id}`)
+					.put(`${endpoint}/${focus.id}`)
 					.set('Authorization', adminToken.body.token)
-					.send(muscle2);
+					.send(focus2);
 			});
 
 			after(async () => {
-				await Muscle.destroy({ where: {} });
+				await Focus.destroy({ where: {} });
 			});
 
 			it('should return a status "200"', () => {
@@ -169,35 +164,35 @@ describe('Muscle Integration', () => {
 			it('should return a object with all properties', () => {
 				const { createdAt, updatedAt, ...rest } = response.body;
 				expect(rest).to.be.deep.equal({
-					...expectedMuscleUpdated,
+					...expectedFocusUpdated,
 					id: 5,
 				});
 			});
 		});
 
-		describe('When deleting an muscle', () => {
+		describe('When deleting an focus', () => {
 			let response: ChaiHttp.Response;
 
 			before(async () => {
-				const muscle = await Muscle.create(muscle3);
+				const focus = await Focus.create(focus3);
 
 				response = await chai
 					.request(app)
-					.delete(`${endpoint}/${muscle.id}`)
+					.delete(`${endpoint}/${focus.id}`)
 					.set('Authorization', adminToken.body.token);
 			});
 			it('should return a status "204"', () => {
 				expect(response.status).to.be.equal(204);
 			});
-			it('should return a object with name muscle', () => {
+			it('should return a object with name focus', () => {
 				expect(response.body).to.be.empty;
 			});
 		});
 	});
 
 	describe('Failure cases', () => {
-		describe('When creating an muscle', () => {
-			describe('without muscle name', () => {
+		describe('When creating an focus', () => {
+			describe('without focus name', () => {
 				let response: ChaiHttp.Response;
 				before(async () => {
 					response = await chai
@@ -213,7 +208,7 @@ describe('Muscle Integration', () => {
 					expect(response.status).to.be.equal(400);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
@@ -222,7 +217,7 @@ describe('Muscle Integration', () => {
 				});
 			});
 
-			describe('with invalid muscle name', () => {
+			describe('with invalid focus name', () => {
 				let response: ChaiHttp.Response;
 				before(async () => {
 					response = await chai
@@ -238,7 +233,7 @@ describe('Muscle Integration', () => {
 					expect(response.status).to.be.equal(400);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
@@ -248,10 +243,10 @@ describe('Muscle Integration', () => {
 			});
 		});
 
-		describe('When getting all muscle', () => {
+		describe('When getting all focus', () => {
 			let response: ChaiHttp.Response;
 			before(async () => {
-				sinon.stub(Muscle, 'findAll').rejects('ConnectionError');
+				sinon.stub(Focus, 'findAll').rejects('ConnectionError');
 				response = await chai
 					.request(app)
 					.get(`${endpoint}`)
@@ -266,7 +261,7 @@ describe('Muscle Integration', () => {
 				expect(response.status).to.be.equal(500);
 			});
 
-			it('should return a object with error muscle', () => {
+			it('should return a object with error focus', () => {
 				expect(response.body).to.have.property('error');
 			});
 
@@ -275,7 +270,7 @@ describe('Muscle Integration', () => {
 			});
 		});
 
-		describe('When getting an muscle by id', () => {
+		describe('When getting an focus by id', () => {
 			describe('with invalid id', () => {
 				let response: ChaiHttp.Response;
 				before(async () => {
@@ -289,7 +284,7 @@ describe('Muscle Integration', () => {
 					expect(response.status).to.be.equal(400);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
@@ -302,25 +297,25 @@ describe('Muscle Integration', () => {
 				let response: ChaiHttp.Response;
 
 				before(async () => {
-					const muscle = await createMuscle(muscle1);
+					const focus = await createFocus(focus1);
 
-					sinon.stub(Muscle, 'findByPk').rejects('ConnectionError');
+					sinon.stub(Focus, 'findByPk').rejects('ConnectionError');
 					response = await chai
 						.request(app)
-						.get(`${endpoint}/${muscle.id}`)
+						.get(`${endpoint}/${focus.id}`)
 						.set('Authorization', adminToken.body.token);
 				});
 
 				after(() => {
 					sinon.restore();
-					Muscle.destroy({ where: {} });
+					Focus.destroy({ where: {} });
 				});
 
 				it('should return a status "404"', () => {
 					expect(response.status).to.be.equal(404);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
@@ -333,7 +328,7 @@ describe('Muscle Integration', () => {
 			});
 		});
 
-		describe('When updating an muscle', () => {
+		describe('When updating an focus', () => {
 			describe('with invalid id', () => {
 				let response: ChaiHttp.Response;
 				before(async () => {
@@ -341,14 +336,14 @@ describe('Muscle Integration', () => {
 						.request(app)
 						.put(`${endpoint}/0`)
 						.set('Authorization', adminToken.body.token)
-						.send(muscle2);
+						.send(focus2);
 				});
 
 				it('should return a status "400"', () => {
 					expect(response.status).to.be.equal(400);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
@@ -359,14 +354,14 @@ describe('Muscle Integration', () => {
 
 			describe('with invalid data', () => {
 				let response: ChaiHttp.Response;
-				let muscle: any;
+				let focus: any;
 
 				before(async () => {
-					const muscle = await createMuscle(muscle1);
+					const focus = await createFocus(focus1);
 
 					response = await chai
 						.request(app)
-						.put(`${endpoint}/${muscle.id}`)
+						.put(`${endpoint}/${focus.id}`)
 						.set('Authorization', adminToken.body.token)
 						.send({
 							name: 'i',
@@ -374,14 +369,14 @@ describe('Muscle Integration', () => {
 				});
 
 				after(() => {
-					Muscle.destroy({ where: {} });
+					Focus.destroy({ where: {} });
 				});
 
 				it('should return a status "400"', () => {
 					expect(response.status).to.be.equal(400);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
@@ -394,29 +389,29 @@ describe('Muscle Integration', () => {
 				let response: ChaiHttp.Response;
 
 				before(async () => {
-					const muscle = await createMuscle(muscle1);
+					const focus = await createFocus(focus1);
 
-					sinon.stub(Muscle, 'update').rejects('ConnectionError');
+					sinon.stub(Focus, 'update').rejects('ConnectionError');
 
 					response = await chai
 						.request(app)
-						.put(`${endpoint}/${muscle.id}`)
+						.put(`${endpoint}/${focus.id}`)
 						.set('Authorization', adminToken.body.token)
 						.send({
-							...muscle2,
+							...focus2,
 						});
 				});
 
 				after(async () => {
 					sinon.restore();
-					await Muscle.destroy({ where: {} });
+					await Focus.destroy({ where: {} });
 				});
 
 				it('should return a status "400"', () => {
 					expect(response.status).to.be.equal(400);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
@@ -426,7 +421,7 @@ describe('Muscle Integration', () => {
 			});
 		});
 
-		describe('When deleting an muscle', () => {
+		describe('When deleting an focus', () => {
 			describe('with invalid id', () => {
 				let response: ChaiHttp.Response;
 				before(async () => {
@@ -440,7 +435,7 @@ describe('Muscle Integration', () => {
 					expect(response.status).to.be.equal(400);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
@@ -453,26 +448,26 @@ describe('Muscle Integration', () => {
 				let response: ChaiHttp.Response;
 
 				before(async () => {
-					const muscle = await createMuscle(muscle3);
+					const focus = await createFocus(focus3);
 
-					sinon.stub(Muscle, 'destroy').rejects('ConnectionError');
+					sinon.stub(Focus, 'destroy').rejects('ConnectionError');
 
 					response = await chai
 						.request(app)
-						.delete(`${endpoint}/${muscle.id}`)
+						.delete(`${endpoint}/${focus.id}`)
 						.set('Authorization', adminToken.body.token);
 				});
 
 				after(async () => {
 					sinon.restore();
-					await Muscle.destroy({ where: {} });
+					await Focus.destroy({ where: {} });
 				});
 
 				it('should return a status "500"', () => {
 					expect(response.status).to.be.equal(500);
 				});
 
-				it('should return a object with error muscle', () => {
+				it('should return a object with error focus', () => {
 					expect(response.body).to.have.property('error');
 				});
 
