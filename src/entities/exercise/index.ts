@@ -1,5 +1,3 @@
-import AccessoryEntity from './Accessory.entity';
-import MachineEntity from './Machine.entity';
-import MuscleEntity from './Muscle.entity';
+import ExerciseRelatedEntity from './ExerciseRelated.entity';
 
-export { AccessoryEntity, MachineEntity, MuscleEntity };
+export { ExerciseRelatedEntity };
