@@ -2,6 +2,10 @@ export type AccessoryToCreate = {
 	name: string;
 };
 
+export type ExerciseRelatedToCreate = {
+	name: string;
+};
+
 export type MachineToCreate = {
 	name: string;
 };
